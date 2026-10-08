@@ -1,7 +1,7 @@
 # UNEN Industrial · página E
 
 Página link-in-bio estática (variante E "Papel + carrusel"). Sin dependencias ni build.
-Publicada en: https://waltersolorzano.github.io/UNI/site/
+Publicada en: https://unen-aneid.github.io/UNI/site/
 
 ## Uso local
 - Abrir `index.html` (doble clic) — funciona sin servidor.
