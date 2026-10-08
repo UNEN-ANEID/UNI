@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>UNEN Industrial</title>
+<style>
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;min-height:100%}
+  body{background:#080b12;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
+    display:flex;flex-wrap:wrap;gap:32px;justify-content:center;align-items:flex-start;padding:40px 26px 68px}
+  body::before{content:"";position:fixed;inset:-25%;z-index:0;pointer-events:none;filter:blur(48px);
+    background:radial-gradient(ellipse at 18% 12%,rgba(79,70,229,.22),transparent 55%),
+               radial-gradient(ellipse at 84% 82%,rgba(56,189,248,.17),transparent 52%),
+               radial-gradient(ellipse at 62% 28%,rgba(219,39,119,.11),transparent 50%);
+    animation:drift 24s ease-in-out infinite alternate}
+  @keyframes drift{from{transform:translate3d(-2%,-1%,0) scale(1)}to{transform:translate3d(2%,2%,0) scale(1.09)}}
+  .item{position:relative;z-index:1;opacity:0;transform:translateY(32px) scale(.97);
+    animation:in .85s cubic-bezier(.2,.75,.2,1) forwards;animation-delay:var(--d)}
+  @keyframes in{to{opacity:1;transform:none}}
+  .cap{display:block;width:max-content;margin:0 auto 15px;font-size:15px;font-weight:800;line-height:1;
+    letter-spacing:.26em;color:#e9eef8;background:rgba(255,255,255,.07);
+    border:1px solid rgba(255,255,255,.14);padding:10px 21px;border-radius:999px}
+  .ph{width:396px;height:748px;border-radius:36px;overflow:hidden;background:#0b0f18;
+    border:1px solid rgba(255,255,255,.13);box-shadow:0 30px 74px rgba(0,0,0,.58);
+    transition:transform .5s cubic-bezier(.2,.75,.2,1),box-shadow .5s}
+  .item:hover .ph{transform:translateY(-9px);box-shadow:0 46px 96px rgba(0,0,0,.66)}
+  iframe{width:100%;height:100%;border:0;display:block}
+  @media(max-width:900px){
+    body{gap:26px;padding:28px 14px 52px}
+    .ph{width:min(92vw,362px);height:722px}
+  }
+</style>
+</head>
+<body>
+  <div class="item" style="--d:.00s"><span class="cap">A</span><div class="ph"><iframe src="mockup.html?v=A&amp;embed=1" loading="lazy" title="A"></iframe></div></div>
+  <div class="item" style="--d:.09s"><span class="cap">B</span><div class="ph"><iframe src="mockup.html?v=B&amp;embed=1" loading="lazy" title="B"></iframe></div></div>
+  <div class="item" style="--d:.18s"><span class="cap">C</span><div class="ph"><iframe src="mockup.html?v=C&amp;embed=1" loading="lazy" title="C"></iframe></div></div>
+  <div class="item" style="--d:.27s"><span class="cap">D</span><div class="ph"><iframe src="mockup.html?v=D&amp;embed=1" loading="lazy" title="D"></iframe></div></div>
+  <div class="item" style="--d:.36s"><span class="cap">E</span><div class="ph"><iframe src="mockup.html?v=E&amp;embed=1" loading="lazy" title="E"></iframe></div></div>
+  <div class="item" style="--d:.45s"><span class="cap">F</span><div class="ph"><iframe src="mockup.html?v=F&amp;embed=1" loading="lazy" title="F"></iframe></div></div>
+</body>
+</html>
