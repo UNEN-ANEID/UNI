@@ -1,0 +1,66 @@
+{
+  "generatedAt": "2026-10-08T03:09:01Z",
+  "rotationMs": 6000,
+  "order": [
+    "tt",
+    "ig",
+    "fb"
+  ],
+  "pool": {
+    "tt": [
+      {
+        "net": "tt",
+        "cap": "Un pequeño vlog y detrás de cámaras 💙✨",
+        "url": "https://www.tiktok.com/@unen.industrial.uni/video/7693385217389743412",
+        "tm": "hace 2 d",
+        "img": "assets/posts/tt_7693385217389743412.jpg"
+      },
+      {
+        "net": "tt",
+        "cap": "El trabajo en equipo siempre dará buenos resultados, felicitamos a todos los chic@S que hicieron posible esta hermosa actividad de EDUCACIÓN VIAL-PINTA,APRENDE Y SALVA VIDAS” ✨",
+        "url": "https://www.tiktok.com/@unen.industrial.uni/video/7693331060033080597",
+        "tm": "hace 2 d",
+        "img": "assets/posts/tt_7693331060033080597.jpg"
+      },
+      {
+        "net": "tt",
+        "cap": "Día internacional de la Educación Vial",
+        "url": "https://www.tiktok.com/@unen.industrial.uni/video/7693248252572863764",
+        "tm": "hace 2 d",
+        "img": "assets/posts/tt_7693248252572863764.jpg"
+      },
+      {
+        "net": "tt",
+        "cap": "Primer lab de soldadura: práctica, aprendizaje y mucha actitud. 🔥✨ 💛⚙️🔥",
+        "url": "https://www.tiktok.com/@unen.industrial.uni/video/7692285895461981447",
+        "tm": "hace 4 d",
+        "img": "assets/posts/tt_7692285895461981447.jpg"
+      }
+    ],
+    "ig": [
+      {
+        "net": "ig",
+        "cap": "Ver las ultimas publicaciones en Instagram",
+        "url": "https://www.instagram.com/unen.industrial/reel/DeIZSwJxhJM/",
+        "tm": "hace 3 d",
+        "img": "assets/posts/ig_DeIZSwJxhJM.jpg"
+      },
+      {
+        "net": "ig",
+        "cap": "Ver las ultimas publicaciones en Instagram",
+        "url": "https://www.instagram.com/unen.industrial/reel/DdosxSSxUbu/",
+        "tm": "23/09/2026",
+        "img": "assets/posts/ig_DdosxSSxUbu.jpg"
+      }
+    ],
+    "fb": [
+      {
+        "net": "fb",
+        "cap": "⚙️🏭 ¡Convertí tus ideas en soluciones que impulsan el desarrollo! La carrera de Ingeniería Industrial de la UNI te prepara para optimizar procesos, liderar equipos, innovar en la producción y contribu",
+        "url": "https://www.facebook.com/permalink.php?story_fbid=pfbid0vZtqmXNbvFuMonQVqnhvUF58PHqVadfBYiqYZ1q6nsU3MdfK3etJfmJmctEmUR7ml&id=61594093749350",
+        "tm": "08/09/2026",
+        "img": "assets/posts/fb_05816337615940937493.jpg"
+      }
+    ]
+  }
+}
