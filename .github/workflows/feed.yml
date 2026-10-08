@@ -25,21 +25,16 @@ jobs:
       - name: Instalar dependencias
         run: |
           python -m pip install --upgrade pip
-          pip install requests playwright
-          python -m playwright install --with-deps chromium
+          pip install requests
 
       - name: Generar el feed real
-        run: |
-          python tools/build_feed.py
-          if [ -d "site/tools" ]; then
-            python site/tools/build_feed.py || true
-          fi
+        run: python site/tools/build_feed.py
 
       - name: Publicar cambios
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data assets/posts site/data site/assets/posts
+          git add site/data site/assets/posts
           if git diff --cached --quiet; then
             echo "sin cambios en el feed"
           else

@@ -3,20 +3,25 @@
 
 Estrategia por red (cada una independiente; si falla se conserva la ultima tanda buena):
   - TikTok   : urlebird (ids + fechas) -> oEmbed oficial (titulo + miniatura) -> descarga miniatura.
-  - Instagram: Playwright headless (perfil publico) -> enlaces + alt (fecha/caption) -> miniatura.
-  - Facebook : Playwright headless (Page Plugin) -> posts + imagen -> miniatura.
+  - Instagram: RSS-Bridge publico (varias instancias, con failover) -> Atom con fecha + miniatura.
+  - Facebook : RSS-Bridge publico (suele fallar: Facebook exige sesion) -> si falla, se conserva lo previo.
+
+Todo corre en la nube (GitHub Actions) sin tokens y sin depender de ninguna PC.
 
 Uso:
-  python tools/build_feed.py                 # todas las redes
+  python tools/build_feed.py                 # TikTok + Instagram
+  python tools/build_feed.py --with-fb       # intenta tambien Facebook
   python tools/build_feed.py --only tt,ig    # solo algunas
   python tools/build_feed.py --check         # no escribe nada, imprime el feed
 """
 import argparse
 import datetime
+import html as _html
 import json
 import os
 import re
 import sys
+import urllib.parse
 
 import requests
 
@@ -42,11 +47,17 @@ URELBIRD = 'https://urlebird.com/user/%s/'
 IG_USER = 'unen.industrial'
 IG_URL = 'https://www.instagram.com/%s/' % IG_USER
 
+# Instancias publicas de RSS-Bridge con failover (gratis, server-side, sin token).
+RSS_BRIDGES = [
+    'https://rss-bridge.org/bridge01',
+    'https://rss-bridge.sans-nuage.fr',
+    'https://rss-bridge.ggc-project.de',
+    'https://rss.bloat.cat',
+    'https://rss-bridge.lewd.tech',
+]
+
 FB_PAGE = 'Unen-Industrial-61594093749350'
 FB_PAGE_URL = 'https://www.facebook.com/' + FB_PAGE
-FB_PLUGIN = ('https://www.facebook.com/plugins/page.php?href=' +
-             requests.utils.quote(FB_PAGE_URL, safe='') +
-             '&tabs=timeline&width=400&height=900&small_header=true&hide_cover=false')
 
 
 # ---------------------------------------------------------------- utilidades
@@ -157,46 +168,80 @@ def download(url, dest, timeout=30):
     return os.path.relpath(dest, SITE).replace('\\', '/')
 
 
-def save_via_ctx(ctx, url, dest, timeout=30000):
-    """Descarga usando el contexto de Playwright (arrastra cookies de IG/FB)."""
-    r = ctx.request.get(url, timeout=timeout)
-    if r.status != 200:
-        raise RuntimeError('http %s' % r.status)
-    body = r.body()
-    if len(body) < 512:
-        raise RuntimeError('imagen muy pequena (%d bytes)' % len(body))
-    os.makedirs(os.path.dirname(dest), exist_ok=True)
-    with open(dest, 'wb') as f:
-        f.write(body)
-    return os.path.relpath(dest, SITE).replace('\\', '/')
+def fetch_image(url, dest, timeout=40):
+    """Descarga una imagen; si el origen la bloquea, reintenta por el proxy wsrv.nl."""
+    candidates = [url]
+    if 'wsrv.nl' not in url and 'weserv.nl' not in url:
+        candidates.append('https://wsrv.nl/?url=' + requests.utils.quote(url, safe=''))
+    for attempt in candidates:
+        try:
+            r = requests.get(attempt, headers=HEADERS, timeout=timeout)
+            r.raise_for_status()
+            ctype = (r.headers.get('content-type') or '')
+            if len(r.content) < 512 or (ctype and 'image' not in ctype):
+                continue
+            os.makedirs(os.path.dirname(dest), exist_ok=True)
+            with open(dest, 'wb') as f:
+                f.write(r.content)
+            return os.path.relpath(dest, SITE).replace('\\', '/')
+        except Exception as e:
+            print('[warn] imagen %s: %s' % (attempt[:48], e))
+    return None
 
 
-def launch(pw):
-    """Usa el Chrome del sistema si existe; si no, el Chromium de Playwright."""
-    try:
-        return pw.chromium.launch(channel='chrome')
-    except Exception:
-        return pw.chromium.launch()
+def html_to_text(html):
+    """Convierte el <content> de un Atom (con <img>/<br>/entidades) a texto plano."""
+    txt = re.sub(r'<br\s*/?>', '\n', html or '', flags=re.I)
+    txt = re.sub(r'<[^>]+>', ' ', txt)
+    txt = _html.unescape(txt)
+    return re.sub(r'\s+', ' ', txt).strip()
 
 
-def parse_es_relative(text, now=None):
-    """'hace aproximadamente un mes' -> datetime."""
-    if not text:
-        return None
-    now = now or now_utc()
-    units = {'minuto': 60, 'min': 60, 'hora': 3600,
-             'dia': 86400, 'día': 86400, 'dias': 86400, 'días': 86400,
-             'semana': 604800, 'sem': 604800,
-             'mes': 2592000, 'meses': 2592000,
-             'ano': 31536000, 'año': 31536000, 'anos': 31536000, 'años': 31536000}
-    m = re.search(r'hace\s+(?:aproximadamente\s+|m[áa]s de\s+|menos de\s+|casi\s+)?'
-                  r'(un|una|uno|\d+)\s+([a-záéíóúñ]+)', text.lower())
-    if not m:
-        return None
-    q = m.group(1)
-    n = 1 if q in ('un', 'una', 'uno') else int(q)
-    secs = units.get(m.group(2))
-    return now - datetime.timedelta(seconds=n * secs) if secs else None
+def parse_atom(xml_text):
+    """Atom de RSS-Bridge -> [{cap, url, when, thumb}], ignorando entradas de error."""
+    import xml.etree.ElementTree as ET
+    ns = {'a': 'http://www.w3.org/2005/Atom'}
+    root = ET.fromstring(xml_text)
+    out = []
+    for e in root.findall('a:entry', ns):
+        title = (e.findtext('a:title', '', ns) or '').strip()
+        content = e.findtext('a:content', '', ns) or ''
+        if 'Bridge returned error' in title or 'Unable to find anything useful' in content:
+            continue
+        link, thumb = '', ''
+        for l in e.findall('a:link', ns):
+            rel = l.get('rel')
+            if rel in (None, 'alternate') and not link:
+                link = l.get('href') or ''
+            if rel == 'enclosure' and not thumb:
+                thumb = l.get('href') or ''
+        if not link:
+            link = (e.findtext('a:id', '', ns) or '').strip()
+        if not thumb:
+            m = re.search(r'(?:src|poster)="([^"]+)"', content)
+            if m:
+                thumb = m.group(1)
+        when = None
+        for tag in ('a:published', 'a:updated'):
+            s = e.findtext(tag, '', ns)
+            if s:
+                try:
+                    when = datetime.datetime.fromisoformat(s.replace('Z', '+00:00'))
+                    break
+                except Exception:
+                    pass
+        cap = html_to_text(content) or title
+        cap = strip_hashtags(cap.lstrip('▶ ').strip())
+        out.append({'cap': cap, 'url': link, 'when': when, 'thumb': thumb})
+    return out
+
+
+def bridge_atom(bridge, params):
+    """Pide un Atom a una instancia de RSS-Bridge y devuelve sus entradas."""
+    url = bridge + '/?action=display&' + urllib.parse.urlencode(params) + '&format=Atom'
+    r = requests.get(url, headers=HEADERS, timeout=40)
+    r.raise_for_status()
+    return parse_atom(r.text)
 
 
 # ------------------------------------------------------------------- TikTok
@@ -254,158 +299,77 @@ def fetch_tiktok(limit=4):
 
 
 # ---------------------------------------------------------------- Instagram
-_MONTHS_EN = ['january', 'february', 'march', 'april', 'may', 'june', 'july',
-              'august', 'september', 'october', 'november', 'december']
-_MONTHS_ES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio',
-              'agosto', 'septiembre', 'setiembre', 'octubre', 'noviembre', 'diciembre']
-# Descripciones automaticas de accesibilidad de Instagram (no son captions reales).
-_IG_AUTO = re.compile(r'^(Puede ser|Es posible que|Puede que|May be|No hay|'
-                      r'Photo by|Video by|Imagen de|Foto de)', re.I)
-
-
-def ig_alt_parse(alt):
-    """'Video by X on October 05, 2026. <caption>' -> (datetime|None, caption)."""
-    if not alt:
-        return None, ''
-    when, end = None, 0
-    m = re.search(r'on\s+([A-Za-z]+)\s+(\d{1,2}),\s*(\d{4})', alt)
-    if m and m.group(1).lower() in _MONTHS_EN:
-        try:
-            when = datetime.datetime(int(m.group(3)), _MONTHS_EN.index(m.group(1).lower()) + 1,
-                                     int(m.group(2)), tzinfo=datetime.timezone.utc)
-            end = m.end()
-        except Exception:
-            when = None
-    if when is None:
-        m = re.search(r'el\s+(\d{1,2})\s+de\s+([a-záéíóú]+)\s+de\s+(\d{4})', alt, re.I)
-        if m and m.group(2).lower() in _MONTHS_ES:
-            try:
-                idx = _MONTHS_ES.index(m.group(2).lower())
-                idx = 9 if idx == 10 else (10 if idx == 9 else idx)  # septiembre/setiembre
-                when = datetime.datetime(int(m.group(3)), idx + 1, int(m.group(1)),
-                                         tzinfo=datetime.timezone.utc)
-                end = m.end()
-            except Exception:
-                when = None
-    cap = alt[end:].lstrip(' .,:;').strip()
-    # Instagram genera una descripcion automatica cuando el post no tiene caption real.
-    if _IG_AUTO.match(cap):
-        cap = ''
-    return when, cap
-
-
 def fetch_instagram(limit=4):
-    from playwright.sync_api import sync_playwright
-    posts = []
-    with sync_playwright() as pw:
-        b = launch(pw)
-        ctx = b.new_context(locale='es-ES')
-        pg = ctx.new_page()
-        pg.goto(IG_URL, wait_until='domcontentloaded', timeout=60000)
-        pg.wait_for_timeout(3500)
-        for _ in range(3):
-            pg.mouse.wheel(0, 1200)
-            pg.wait_for_timeout(1200)
-        rows = pg.evaluate("""() => {
-          const out = [], seen = new Set();
-          document.querySelectorAll('a[href*="/p/"], a[href*="/reel/"]').forEach(a => {
-            const img = a.querySelector('img');
-            if (!img) return;
-            const href = a.href.split('?')[0];
-            if (seen.has(href)) return;
-            seen.add(href);
-            out.push({ url: href, alt: img.alt || '', src: img.src || '' });
-          });
-          return out;
-        }""")
+    """Instagram por RSS-Bridge publico (varias instancias con failover)."""
+    for bridge in RSS_BRIDGES:
+        try:
+            rows = bridge_atom(bridge, {
+                'bridge': 'InstagramBridge',
+                'context': 'Username',
+                'u': IG_USER,
+            })
+        except Exception as e:
+            print('[warn] ig %s: %s' % (bridge, e))
+            continue
+        posts = []
         for row in rows[:limit]:
-            when, cap = ig_alt_parse(row['alt'])
+            if not row['url'] or '/p/' not in row['url'] and '/reel/' not in row['url']:
+                continue
             img = None
-            if row['src']:
-                ident = row['url'].rstrip('/').split('/')[-1] or 'p'
-                try:
-                    img = save_via_ctx(ctx, row['src'], os.path.join(POSTS, slug('ig', ident) + '.jpg'))
-                except Exception as e:
-                    print('[warn] instagram miniatura %s: %s' % (ident, e))
-            posts.append(normalize('ig', cap, row['url'], when=when, img=img))
-        b.close()
-    return posts
+            if row['thumb']:
+                ident = re.sub(r'[^A-Za-z0-9_-]', '', row['url'].rstrip('/').split('/')[-1]) or 'p'
+                img = fetch_image(row['thumb'], os.path.join(POSTS, slug('ig', ident) + '.jpg'))
+            posts.append(normalize('ig', row['cap'], row['url'], when=row['when'], img=img))
+        if posts:
+            print('[ig] fuente: %s' % bridge)
+            return posts
+    return []
 
 
 # ----------------------------------------------------------------- Facebook
-_FB_NOISE = re.compile(r'^(\d[\d.,]*\s*(seguidores|me gusta|comentarios|personas)|'
-                       r'hace\s|Se un[ií][oó]|Ver m[áa]s|Me gusta|Comentar|Compartir|'
-                       r'Todas las reacciones|UNEN Industrial UNI|Unen-Industrial|Facebook)$', re.I)
-# Cabecera del post: "Unen-Industrial hace aproximadamente un mes".
-_FB_HEAD = re.compile(r'^.*?hace\s+(?:aproximadamente\s+|m[áa]s de\s+|menos de\s+|casi\s+)?'
-                      r'(?:un|una|uno|\d+)\s+[a-záéíóúñ]+\s*', re.I)
-
-
-def fb_clean_text(text):
-    lines = [l.strip() for l in (text or '').splitlines()]
-    keep = [l for l in lines if l and not _FB_NOISE.match(l)]
-    cap = _FB_HEAD.sub('', ' '.join(keep)).strip()
-    return re.sub(r'\s+', ' ', cap)
-
-
 def fetch_facebook(limit=3):
-    from playwright.sync_api import sync_playwright
-    posts = []
-    with sync_playwright() as pw:
-        b = launch(pw)
-        ctx = b.new_context(locale='es-ES', viewport={'width': 420, 'height': 1000})
-        pg = ctx.new_page()
-        pg.goto(FB_PLUGIN, wait_until='domcontentloaded', timeout=60000)
-        pg.wait_for_timeout(4500)
-        for _ in range(4):
-            pg.mouse.wheel(0, 1500)
-            pg.wait_for_timeout(1200)
-        rows = pg.evaluate("""() => {
-          const out = [], seen = new Set();
-          document.querySelectorAll('.userContentWrapper').forEach(w => {
-            const txt = (w.innerText || '').trim();
-            if (!txt) return;
-            const link = w.querySelector('a[href*="/posts/"], a[href*="story_fbid"], a[href*="/photos/"]');
-            const url = link ? link.href.split('&__cft__')[0] : '';
-            if (url && seen.has(url)) return;
-            if (url) seen.add(url);
-            let best = '', area = 0;
-            w.querySelectorAll('img').forEach(im => {
-              const a = (im.naturalWidth || 0) * (im.naturalHeight || 0);
-              if (a > area) { area = a; best = im.src; }
-            });
-            out.push({ text: txt, url: url, src: best });
-          });
-          return out;
-        }""")
-        for row in rows[:limit]:
-            when = parse_es_relative(row['text'])
-            cap = fb_clean_text(row['text'])
-            if len(cap) < 12:
+    """Facebook por RSS-Bridge publico. Suele fallar (Facebook exige sesion):
+    en ese caso se conserva la ultima tanda buena (ver merge_keep_last_good)."""
+    for bridge in RSS_BRIDGES:
+        for user in (FB_PAGE, IG_USER):
+            try:
+                rows = bridge_atom(bridge, {
+                    'bridge': 'FacebookBridge',
+                    'context': 'User',
+                    'u': user,
+                })
+            except Exception as e:
+                print('[warn] fb %s: %s' % (bridge, e))
                 continue
-            url = re.sub(r'[&?]ref=embed_page.*$', '', row['url'])
-            img = None
-            if row['src'] and 'emoji' not in row['src']:
-                ident = re.sub(r'\D', '', url)[:20] or 'fb'
-                try:
-                    img = save_via_ctx(ctx, row['src'], os.path.join(POSTS, slug('fb', ident) + '.jpg'))
-                except Exception as e:
-                    print('[warn] facebook miniatura: %s' % e)
-            posts.append(normalize('fb', cap, url, when=when, img=img))
-        b.close()
-    return posts
+            posts = []
+            for row in rows[:limit]:
+                if len(row['cap']) < 12:
+                    continue
+                img = None
+                if row['thumb']:
+                    ident = re.sub(r'\D', '', row['url'])[:20] or 'fb'
+                    img = fetch_image(row['thumb'], os.path.join(POSTS, slug('fb', ident) + '.jpg'))
+                posts.append(normalize('fb', row['cap'], row['url'], when=row['when'], img=img))
+            if posts:
+                print('[fb] fuente: %s (%s)' % (bridge, user))
+                return posts
+    return []
 
 
 # -------------------------------------------------------------------- build
 FETCHERS = {'tt': fetch_tiktok, 'ig': fetch_instagram, 'fb': fetch_facebook}
 
 
-def build(only=None, check=False):
+def build(only=None, check=False, with_fb=False):
     old = load_old_feed() or {}
     old_pool = old.get('pool') or {}
     new_pool = {}
     for net in ORDER:
-        if (only and net not in only) or net not in FETCHERS:
+        wanted = (not only or net in only) and net in FETCHERS
+        # Facebook casi siempre falla desde la nube: solo se intenta si lo piden.
+        if net == 'fb' and not (with_fb or (only and 'fb' in only)):
+            wanted = False
+        if not wanted:
             new_pool[net] = old_pool.get(net) or []
             continue
         try:
@@ -447,9 +411,10 @@ def main(argv=None):
     ap = argparse.ArgumentParser(description='Genera el feed real de la pagina E.')
     ap.add_argument('--check', action='store_true', help='no escribe, solo imprime')
     ap.add_argument('--only', default='', help='lista separada por comas: tt,ig,fb')
+    ap.add_argument('--with-fb', action='store_true', help='intenta tambien Facebook')
     args = ap.parse_args(argv)
     only = [x.strip() for x in args.only.split(',') if x.strip()] or None
-    return build(only=only, check=args.check)
+    return build(only=only, check=args.check, with_fb=args.with_fb)
 
 
 if __name__ == '__main__':

@@ -1,6 +1,6 @@
 (function (root) {
   root.UNEN_FEED = {
-  "generatedAt": "2026-10-08T03:18:51Z",
+  "generatedAt": "2026-10-08T03:55:21Z",
   "rotationMs": 6000,
   "order": [
     "tt",
@@ -41,15 +41,15 @@
     "ig": [
       {
         "net": "ig",
-        "cap": "Ver las ultimas publicaciones en Instagram",
-        "url": "https://www.instagram.com/unen.industrial/reel/DeIZSwJxhJM/",
-        "tm": "hace 3 d",
+        "cap": "Educación vial ✨",
+        "url": "https://www.instagram.com/p/DeIZSwJxhJM/",
+        "tm": "hace 2 d",
         "img": "assets/posts/ig_DeIZSwJxhJM.jpg"
       },
       {
         "net": "ig",
-        "cap": "Ver las ultimas publicaciones en Instagram",
-        "url": "https://www.instagram.com/unen.industrial/reel/DdosxSSxUbu/",
+        "cap": "Pov: los industriales en laboratorios de química",
+        "url": "https://www.instagram.com/p/DdosxSSxUbu/",
         "tm": "23/09/2026",
         "img": "assets/posts/ig_DdosxSSxUbu.jpg"
       }
