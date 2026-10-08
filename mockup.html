@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>UNEN Industrial</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -10,10 +10,8 @@
 <style>
   *{box-sizing:border-box}
   html,body{margin:0;padding:0}
-  body{background:#0B0F18;font-family:Poppins,system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased}
-  .p4{max-width:1180px;margin:0 auto;padding:30px 20px 46px}
-  .p4 h2{color:#F3F4F6}
-  .p4 .subtitle{color:#9BA1AC}
+  body{background:#0B0F18;font-family:Poppins,system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased;}
+  .p4{max-width:1180px;margin:0 auto;padding:30px 20px 46px;}
 </style>
 </head>
 <body>
@@ -125,24 +123,30 @@
   .node.n3 { transform:rotate(90deg)   translate(128px) rotate(-90deg); animation-delay:2.2s; }
   .node.n4 { transform:rotate(180deg)  translate(128px) rotate(-180deg); animation-delay:3.3s; }
 
-  /* ---------- HERO D: taller cartoon (herramientas dando vueltas) ---------- */
+  /* ---------- HERO D: taller industrial (herramientas dando vueltas) ---------- */
   .fun { position:relative; width:236px; height:236px; margin:16px auto 30px; }
-  .fun .rail { position:absolute; inset:14px; border-radius:50%; border:2px dashed var(--lnb); }
+  .fun .rail { position:absolute; inset:14px; border-radius:50%; border:1px dashed color-mix(in srgb, var(--acc) 30%, transparent); }
+  .fun .flange { position:absolute; inset:0; border-radius:50%; opacity:.45;
+    background:repeating-conic-gradient(from 0deg, var(--mut) 0deg 1.1deg, transparent 1.1deg 10deg);
+    -webkit-mask:radial-gradient(closest-side, transparent 92%, #000 93%);
+            mask:radial-gradient(closest-side, transparent 92%, #000 93%); }
   .fun .spin { position:absolute; inset:0; animation:turn 26s linear infinite; }
   @keyframes turn { to{ transform:rotate(360deg) } }
   @keyframes keepUpright { from{ transform:rotate(calc(-1 * var(--a))) } to{ transform:rotate(calc(-1 * var(--a) - 360deg)) } }
-  .fun .tool { position:absolute; left:50%; top:50%; width:42px; height:42px; margin:-21px 0 0 -21px;
+  .fun .tool { position:absolute; left:50%; top:50%; width:46px; height:46px; margin:-23px 0 0 -23px;
     transform:rotate(var(--a)) translate(110px);
-    display:flex; align-items:center; justify-content:center; border-radius:14px;
-    border:2px solid rgba(255,255,255,.24); color:#fff;
-    box-shadow:0 7px 18px rgba(2,4,14,.48), inset 0 -3px 0 rgba(0,0,0,.18); }
+    display:flex; align-items:center; justify-content:center; border-radius:50%;
+    background:radial-gradient(circle at 34% 26%, #3A3F49 0%, #23272E 46%, #14171C 100%);
+    border:1px solid var(--tb); color:var(--tc);
+    box-shadow:0 8px 18px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.10), inset 0 -2px 0 rgba(0,0,0,.35); }
+  .fun .tool::after { content:''; position:absolute; inset:8px; border-radius:50%; border:1px solid var(--tb); opacity:.5; }
   .fun .tool i { display:block; animation:keepUpright 26s linear infinite; }
-  .fun .tool svg { display:block; width:22px; height:22px; }
-  .fun .tool:nth-of-type(1){ --a:0deg;   background:#FFB020; }
-  .fun .tool:nth-of-type(2){ --a:72deg;  background:#0EA5E9; }
-  .fun .tool:nth-of-type(3){ --a:144deg; background:#14B8A6; }
-  .fun .tool:nth-of-type(4){ --a:216deg; background:#8B5CF6; }
-  .fun .tool:nth-of-type(5){ --a:288deg; background:#FF7043; }
+  .fun .tool svg { display:block; width:20px; height:20px; }
+  .fun .tool:nth-of-type(1){ --a:0deg;   --tb:rgba(201,206,216,.45); --tc:#D8DCE4; }
+  .fun .tool:nth-of-type(2){ --a:72deg;  --tb:rgba(210,35,42,.66);   --tc:#FF6E62; }
+  .fun .tool:nth-of-type(3){ --a:144deg; --tb:rgba(21,101,192,.66);  --tc:#6FA9F6; }
+  .fun .tool:nth-of-type(4){ --a:216deg; --tb:rgba(201,206,216,.45); --tc:#D8DCE4; }
+  .fun .tool:nth-of-type(5){ --a:288deg; --tb:rgba(210,35,42,.66);   --tc:#FF6E62; }
 
   /* ===== tiles de red con color de marca (como la referencia) ===== */
   .lk2 .chipl.ig, .gear .node.n1 { background:linear-gradient(135deg,#FEDA75 0%,#FA7E1E 26%,#D62976 58%,#962FBF 82%,#4F5BD5 100%); color:#fff; border-color:transparent; }
@@ -175,7 +179,7 @@
   .lk2:nth-of-type(4)::before{ animation-delay:1.5s } .lk2:nth-of-type(5)::before{ animation-delay:2s }
   @keyframes sheen { 0%{left:-40%} 55%{left:130%} 100%{left:130%} }
 
-  /* ================= E : aro de plano + carrusel + grilla ================= */
+  /* ================= E : aro de plano + carrusel + botones grandes ================= */
   .phone2.v-E { --acc:#1565C0; --glow1:rgba(21,101,192,.20); --glow2:rgba(30,64,120,.11); --glow3:rgba(21,101,192,.11); }
   .phone2.v-F { --bg:#0B1020; --panel:rgba(255,255,255,.075); --panel2:rgba(255,255,255,.05); --txt:#EEF2FF;
     --mut:#93A0BF; --acc:#38BDF8; --lnb:rgba(255,255,255,.12); border-color:rgba(255,255,255,.10);
@@ -243,11 +247,16 @@
   .car .dots i { width:6px; height:6px; border-radius:50%; background:var(--lnb); transition:.3s; }
   .car .dots i.on { background:var(--acc); transform:scale(1.45); } 22%,100%{ background:var(--lnb); transform:scale(1) } }
 
-  /* grilla de enlaces (solo E) */
-  .phone2.v-E .lklist { display:grid; grid-template-columns:1fr 1fr; gap:9px; margin-top:10px; }
-  .phone2.v-E .lklist .lk2 { margin-top:0; min-height:108px; flex-direction:column; align-items:flex-start; gap:9px; padding:12px 12px 11px; }
-  .phone2.v-E .lklist .lk2 .tx { margin-top:auto; }
-  .phone2.v-E .lklist .lk2 .led { position:absolute; top:12px; right:12px; }
+  /* enlaces de E: botones grandes estilo Linktree */
+  .phone2.v-E .stats { display:none; }
+  .phone2.v-E .lklist { display:flex; flex-direction:column; gap:10px; margin-top:10px; }
+  .phone2.v-E .lklist .lk2 { margin-top:0; padding:14px 15px; border-radius:15px; gap:13px;
+    transition:transform .28s cubic-bezier(.2,.7,.2,1), box-shadow .28s, border-color .28s; }
+  .phone2.v-E .lklist .lk2 .chipl { width:44px; height:44px; border-radius:13px; }
+  .phone2.v-E .lklist .lk2 .chipl svg { width:22px; height:22px; }
+  .phone2.v-E .lklist .lk2 .tx { font-size:.86rem; }
+  .phone2.v-E .lklist .lk2 .tx small { font-size:.64rem; }
+  .phone2.v-E .lklist .lk2:hover { transform:translateY(-2px); border-color:color-mix(in srgb, var(--acc) 50%, transparent); box-shadow:0 14px 28px rgba(0,0,0,.14); }
 
   /* color de marca para cualquier cuadrito de red */
   .chipl.ig { background:linear-gradient(135deg,#FEDA75 0%,#FA7E1E 26%,#D62976 58%,#962FBF 82%,#4F5BD5 100%); color:#fff; border-color:transparent; }
@@ -270,8 +279,8 @@
   body.embed .phone2 { width:100%; max-width:430px; margin:0 auto; }</style>
 
 <div class="p4">
-  <h2>UNEN · Industrial</h2>
-  <p class="subtitle"><b>E es nueva:</b> paleta del C, sin reloj ni iconos alrededor del logo — en su lugar un <b>aro de plano técnico</b>; debajo del título un <b>carrusel</b> que va pasando red por red mostrando su actividad; y los enlaces ya <b>no van en lista</b>, van en grilla de 2 columnas. <b>D</b> también cambió: herramientas cartoon en vez de corona.</p>
+  <h2>UNEN &middot; Industrial</h2>
+  <p class="subtitle"><b>E es nueva:</b> paleta del C, sin reloj ni iconos alrededor del logo — en su lugar un <b>aro de plano técnico</b>; debajo del título un <b>carrusel</b> que va pasando red por red mostrando su actividad; y los enlaces ya <b>no van en lista</b>, van en botones grandes. <b>D</b> también cambió: piezas industriales en vez de corona.</p>
 
   <div class="stage">
     <div>
@@ -279,7 +288,7 @@
         <button class="pchip" data-p="A" data-choice="v-A" onclick="setView('A', this)">A · Acero Grafito</button>
         <button class="pchip" data-p="B" data-choice="v-B" onclick="setView('B', this)">B · Papel Técnico</button>
         <button class="pchip" data-p="C" data-choice="v-C" onclick="setView('C', this)">C · Corona industrial</button>
-        <button class="pchip" data-p="D" data-choice="v-D" onclick="setView('D', this)">D · Taller cartoon</button>
+        <button class="pchip" data-p="D" data-choice="v-D" onclick="setView('D', this)">D · Taller industrial</button>
         <button class="pchip on" data-p="E" data-choice="v-E" onclick="setView('E', this)">E · Papel + carrusel</button>
         <button class="pchip" data-p="F" data-choice="v-F" onclick="setView('F', this)">F · Colorido</button>
       </div>
@@ -312,16 +321,17 @@
           </div>
         </div>
 
-        <!-- HERO D : taller cartoon — herramientas dando vueltas -->
+        <!-- HERO D : taller industrial — herramientas dando vueltas -->
         <div class="hero hero-fun">
           <div class="fun">
             <div class="rail"></div>
+            <div class="flange"></div>
             <div class="spin">
               <div class="tool"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.4"/><circle cx="12" cy="12" r="7.4"/><path d="M12 2.4v2.2M12 19.4v2.2M2.4 12h2.2M19.4 12h2.2M5.2 5.2l1.6 1.6M17.2 17.2l1.6 1.6M18.8 5.2l-1.6 1.6M6.8 17.2l-1.6 1.6"/></svg></i></div>
               <div class="tool"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></i></div>
               <div class="tool"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.4l7.4 4.3v8.6L12 20.6 4.6 16.3V7.7z"/><circle cx="12" cy="12" r="3.2"/></svg></i></div>
-              <div class="tool"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l7-7"/><path d="M10.2 12.8l1 1"/><rect x="12.4" y="3.2" width="5.6" height="8" rx="2.4" transform="rotate(45 15.2 7.2)"/></svg></i></div>
-              <div class="tool"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.6 17.4h16.8"/><path d="M5.6 17.4v-1.6a6.4 6.4 0 0 1 12.8 0v1.6"/><path d="M12 8.4v9"/></svg></i></div>
+              <div class="tool"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9.2" y="3.4" width="5.6" height="3" rx="1"/><path d="M10.6 6.4v12.4l1.4 1.8 1.4-1.8V6.4"/><path d="M10.6 9.8h2.8M10.6 12.6h2.8M10.6 15.4h2.8"/></svg></i></div>
+              <div class="tool"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.4"/><circle cx="12" cy="12" r="3.2"/><circle cx="12" cy="6.6" r="1.05"/><circle cx="16.7" cy="14.7" r="1.05"/><circle cx="7.3" cy="14.7" r="1.05"/></svg></i></div>
             </div>
             <div class="core"><img src="logo.png" alt="UNEN – ANEID"></div>
           </div>
@@ -383,19 +393,19 @@
 
     <div>
       <div class="ok">
-        <b>E es nueva:</b> misma paleta del C, pero <b>sin reloj</b> y <b>sin iconos de redes</b> alrededor del logo → un <b>aro de plano técnico</b> girando. Debajo del título, un <b>carrusel</b> que muestra red por red su actividad. Y los enlaces pasan de <b>lista</b> a <b>grilla de 2 columnas</b>. <b>D</b> cambió a <b>herramientas cartoon</b>.
+        <b>E es nueva:</b> misma paleta del C, pero <b>sin reloj</b> y <b>sin iconos de redes</b> alrededor del logo → un <b>aro de plano técnico</b> girando. Debajo del título, un <b>carrusel</b> que muestra una publicación de cada red y se refresca solo. Y los enlaces pasan de <b>lista</b> a <b>botones grandes</b>, como el link original pero con color de marca. <b>D</b> cambió a <b>piezas industriales</b> en la paleta del logo.
       </div>
 
       <div class="newbox">
         <div class="tag">Iconos · como la referencia</div>
         <h3>Color de marca en cuadrito</h3>
-        <p>Instagram con su degradado naranja→rosa→violeta, Facebook azul, WhatsApp verde, TikTok negro con borde. El cuadrito es de 36px y va blanco el glifo, igual que en el link que te dieron. Así entra <b>color real</b> a la página sin que se vuelva ruido: los colores viven en piezas chiquitas, no en el fondo.</p>
+        <p>Instagram con su degradado naranja→rosa→violeta, Facebook azul, WhatsApp verde, TikTok negro con borde. El cuadrito va de 36 a 44px según la vista y va blanco el glifo, igual que en el link que te dieron. Así entra <b>color real</b> a la página sin que se vuelva ruido: los colores viven en piezas chiquitas, no en el fondo.</p>
       </div>
 
       <div class="newbox">
         <div class="tag">D · paleta</div>
         <h3>Bruma de color</h3>
-        <p>Fondo índigo noche con <b>tres brumas desenfocadas</b>: índigo, cian y verde agua — <b>todas de la misma familia</b>, ya no entra magenta. Paneles de vidrio. La clave para que no vomite color: <b>ningún color saturado ocupa área grande</b>; el color pleno vive en las herramientas y en los cuadritos de las redes.</p>
+        <p>Fondo índigo noche con <b>tres brumas desenfocadas</b>: índigo, cian y verde agua — <b>todas de la misma familia</b>, ya no entra magenta. Paneles de vidrio. La clave para que no vomite color: <b>ningún color saturado ocupa área grande</b>; el color pleno vive en las piezas del taller y en los cuadritos de las redes.</p>
       </div>
 
       <div class="newbox">
@@ -405,14 +415,14 @@
 
       <div class="newbox">
         <div class="tag">D · idea</div>
-        <h3>Taller cartoon</h3>
-        <p>Sin corona y sin iconos de redes: una <b>pista punteada</b> rodea el logo y por ella dan vueltas <b>5 herramientas</b> de caricatura (engranaje ámbar, llave celeste, tuerca verde agua, destornillador lila, casco naranja). Giran en 26 s y <b>nunca se voltean</b>. La bruma de fondo sigue siendo índigo + cian + verde agua.</p>
+        <h3>Taller industrial</h3>
+        <p>Sin corona y sin iconos de redes: una <b>pista punteada</b> rodea el logo y por ella dan vueltas <b>5 piezas industriales</b> (engranaje y tornillo en acero, llave y rodamiento en rojo, tuerca en azul). Con bisel metálico y brida de marcas alrededor, giran en 26 s y <b>nunca se voltean</b>. La bruma de fondo sigue siendo índigo + cian + verde agua.</p>
       </div>
 
       <div class="newbox">
         <div class="tag">E · idea</div>
-        <h3>Carrusel + grilla</h3>
-        <p>Arriba, el <b>aro de plano técnico</b>: líneas de eje, anillo punteado girando lento y las cuatro escuadras de las esquinas — nada de reloj, nada de iconos de redes. Debajo del título, un <b>carrusel</b> que va pasando las 5 redes una por una (22 s) con su <b>barra de actividad</b> y su "Hoy / Ayer / Hace 3 d"; los puntos de abajo marcan en cuál va. Y los enlaces ahora son <b>grilla de 2 columnas</b> en vez de lista: cada red es una placa con su icono arriba; WhatsApp ocupa el ancho completo.</p>
+        <h3>Carrusel + botones</h3>
+        <p>Arriba, el <b>aro de plano técnico</b>: líneas de eje, anillo punteado girando lento y las cuatro escuadras de las esquinas — nada de reloj, nada de iconos de redes. Debajo del título, un <b>carrusel</b> con una <b>tarjeta de publicación</b> por red -miniatura, texto y likes- que pasa cada 6 s y <b>se refresca sola</b>: cada red tiene 3 publicaciones que rotan, así que no se repite la misma seguido; los puntos de abajo marcan en cuál va. Y los enlaces ya no van en lista: son <b>botones grandes de lado a lado</b> (estilo Linktree), con su icono de color a la izquierda, su handle, su LED y un levante suave al pasar el mouse.</p>
       </div>
 
       <div class="newbox">
@@ -516,6 +526,5 @@
     if(q.get('embed')) document.body.classList.add('embed');
   })();
 </script>
-
 </body>
 </html>

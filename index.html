@@ -2,42 +2,113 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>UNEN Industrial</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>UNEN</title>
 <style>
   *{box-sizing:border-box}
-  html,body{margin:0;padding:0;min-height:100%}
-  body{background:#080b12;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
-    display:flex;flex-wrap:wrap;gap:32px;justify-content:center;align-items:flex-start;padding:40px 26px 68px}
-  body::before{content:"";position:fixed;inset:-25%;z-index:0;pointer-events:none;filter:blur(48px);
-    background:radial-gradient(ellipse at 18% 12%,rgba(79,70,229,.22),transparent 55%),
-               radial-gradient(ellipse at 84% 82%,rgba(56,189,248,.17),transparent 52%),
-               radial-gradient(ellipse at 62% 28%,rgba(219,39,119,.11),transparent 50%);
-    animation:drift 24s ease-in-out infinite alternate}
-  @keyframes drift{from{transform:translate3d(-2%,-1%,0) scale(1)}to{transform:translate3d(2%,2%,0) scale(1.09)}}
-  .item{position:relative;z-index:1;opacity:0;transform:translateY(32px) scale(.97);
-    animation:in .85s cubic-bezier(.2,.75,.2,1) forwards;animation-delay:var(--d)}
-  @keyframes in{to{opacity:1;transform:none}}
-  .cap{display:block;width:max-content;margin:0 auto 15px;font-size:15px;font-weight:800;line-height:1;
-    letter-spacing:.26em;color:#e9eef8;background:rgba(255,255,255,.07);
-    border:1px solid rgba(255,255,255,.14);padding:10px 21px;border-radius:999px}
-  .ph{width:396px;height:748px;border-radius:36px;overflow:hidden;background:#0b0f18;
-    border:1px solid rgba(255,255,255,.13);box-shadow:0 30px 74px rgba(0,0,0,.58);
-    transition:transform .5s cubic-bezier(.2,.75,.2,1),box-shadow .5s}
-  .item:hover .ph{transform:translateY(-9px);box-shadow:0 46px 96px rgba(0,0,0,.66)}
-  iframe{width:100%;height:100%;border:0;display:block}
-  @media(max-width:900px){
-    body{gap:26px;padding:28px 14px 52px}
-    .ph{width:min(92vw,362px);height:722px}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; min-height:100vh; background:#080b12; color:#e8eef7;
+    font-family:ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif;
+    display:flex; flex-wrap:wrap; gap:30px; justify-content:center; align-items:flex-start;
+    padding:104px 22px 60px; overflow-x:hidden;
+  }
+  body::before{
+    content:''; position:fixed; inset:-30%; z-index:0; pointer-events:none;
+    background:
+      radial-gradient(ellipse at 18% 14%, rgba(79,70,229,.20), transparent 52%),
+      radial-gradient(ellipse at 84% 76%, rgba(56,189,248,.16), transparent 50%),
+      radial-gradient(ellipse at 50% 52%, rgba(210,35,42,.10), transparent 58%);
+    filter:blur(48px);
+    animation:drift 24s ease-in-out infinite alternate;
+  }
+  @keyframes drift{ from{transform:translate3d(-2%,-1%,0) scale(1)} to{transform:translate3d(2%,2%,0) scale(1.08)} }
+
+  nav.jump{
+    position:fixed; left:50%; top:14px; transform:translateX(-50%); z-index:10;
+    display:flex; gap:6px; padding:7px;
+    background:rgba(12,16,26,.72); border:1px solid rgba(255,255,255,.12);
+    border-radius:999px; backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+    box-shadow:0 12px 30px rgba(0,0,0,.45);
+  }
+  nav.jump a{
+    width:38px; height:38px; display:grid; place-items:center;
+    border-radius:50%; text-decoration:none; color:#cbd5e6;
+    font-weight:700; font-size:14px; letter-spacing:.04em;
+    transition:background .25s, color .25s, transform .25s;
+  }
+  nav.jump a:hover{ background:rgba(255,255,255,.10); color:#fff; transform:translateY(-1px); }
+
+  .item{
+    position:relative; z-index:1;
+    display:flex; flex-direction:column; align-items:center; gap:14px;
+    scroll-margin-top:96px;
+    opacity:0; transform:translateY(28px) scale(.97);
+    animation:in .85s cubic-bezier(.2,.7,.2,1) forwards; animation-delay:var(--d);
+  }
+  @keyframes in{ to{ opacity:1; transform:none } }
+
+  .cap{
+    font-weight:700; font-size:14px; line-height:1; letter-spacing:.26em; text-transform:uppercase;
+    color:#eef2ff; background:rgba(255,255,255,.07);
+    border:1px solid rgba(255,255,255,.14); padding:10px 22px; border-radius:999px;
+  }
+
+  .ph{
+    width:min(392px,88vw); height:min(748px,168vw);
+    border-radius:34px; overflow:hidden; background:#0b0f18;
+    border:1px solid rgba(255,255,255,.12);
+    box-shadow:0 30px 70px rgba(0,0,0,.55);
+    transition:transform .45s cubic-bezier(.2,.7,.2,1), box-shadow .45s, border-color .45s;
+  }
+  .item:hover .ph{ transform:translateY(-9px); box-shadow:0 46px 92px rgba(0,0,0,.62); border-color:rgba(255,255,255,.20); }
+  .ph iframe{ width:100%; height:100%; border:0; display:block; }
+
+  @media (max-width:900px){
+    body{ flex-direction:column; flex-wrap:nowrap; align-items:center; gap:34px; padding:96px 14px 48px; }
+    .item{ width:100%; }
+    .ph{ width:min(392px,94vw); height:min(700px,166vw); border-radius:28px; }
+    nav.jump{ gap:4px; padding:6px; }
+    nav.jump a{ width:36px; height:36px; font-size:13px; }
+  }
+  @media (max-width:380px){
+    nav.jump a{ width:32px; height:32px; font-size:12px; }
   }
 </style>
 </head>
 <body>
-  <div class="item" style="--d:.00s"><span class="cap">A</span><div class="ph"><iframe src="mockup.html?v=A&amp;embed=1" loading="lazy" title="A"></iframe></div></div>
-  <div class="item" style="--d:.09s"><span class="cap">B</span><div class="ph"><iframe src="mockup.html?v=B&amp;embed=1" loading="lazy" title="B"></iframe></div></div>
-  <div class="item" style="--d:.18s"><span class="cap">C</span><div class="ph"><iframe src="mockup.html?v=C&amp;embed=1" loading="lazy" title="C"></iframe></div></div>
-  <div class="item" style="--d:.27s"><span class="cap">D</span><div class="ph"><iframe src="mockup.html?v=D&amp;embed=1" loading="lazy" title="D"></iframe></div></div>
-  <div class="item" style="--d:.36s"><span class="cap">E</span><div class="ph"><iframe src="mockup.html?v=E&amp;embed=1" loading="lazy" title="E"></iframe></div></div>
-  <div class="item" style="--d:.45s"><span class="cap">F</span><div class="ph"><iframe src="mockup.html?v=F&amp;embed=1" loading="lazy" title="F"></iframe></div></div>
+<nav class="jump">
+  <a href="#A">A</a><a href="#B">B</a><a href="#C">C</a><a href="#D">D</a><a href="#E">E</a><a href="#F">F</a>
+</nav>
+
+<section class="item" id="A" style="--d:.00s">
+  <span class="cap">A</span>
+  <div class="ph"><iframe src="mockup.html?v=A&amp;embed=1" loading="lazy" title="A"></iframe></div>
+</section>
+
+<section class="item" id="B" style="--d:.08s">
+  <span class="cap">B</span>
+  <div class="ph"><iframe src="mockup.html?v=B&amp;embed=1" loading="lazy" title="B"></iframe></div>
+</section>
+
+<section class="item" id="C" style="--d:.16s">
+  <span class="cap">C</span>
+  <div class="ph"><iframe src="mockup.html?v=C&amp;embed=1" loading="lazy" title="C"></iframe></div>
+</section>
+
+<section class="item" id="D" style="--d:.24s">
+  <span class="cap">D</span>
+  <div class="ph"><iframe src="mockup.html?v=D&amp;embed=1" loading="lazy" title="D"></iframe></div>
+</section>
+
+<section class="item" id="E" style="--d:.32s">
+  <span class="cap">E</span>
+  <div class="ph"><iframe src="mockup.html?v=E&amp;embed=1" loading="lazy" title="E"></iframe></div>
+</section>
+
+<section class="item" id="F" style="--d:.40s">
+  <span class="cap">F</span>
+  <div class="ph"><iframe src="mockup.html?v=F&amp;embed=1" loading="lazy" title="F"></iframe></div>
+</section>
 </body>
 </html>
