@@ -1,23 +1,25 @@
 *{box-sizing:border-box}
-html,body{margin:0;padding:0}
+html,body{margin:0;padding:0;min-height:100%}
 body{
-  background:#0B0F18;
+  background:#F3F4F6;
   font-family:Poppins,system-ui,-apple-system,sans-serif;
   -webkit-font-smoothing:antialiased;
   min-height:100vh;
   display:flex;
   justify-content:center;
   align-items:flex-start;
-  padding:18px 14px 24px;
+  color:#0E1116;
+  position:relative;
+  overflow-x:hidden;
+  background-image:repeating-linear-gradient(0deg,rgba(21,101,192,.05) 0 1px,transparent 1px 26px),
+                   repeating-linear-gradient(90deg,rgba(21,101,192,.05) 0 1px,transparent 1px 26px);
+  background-attachment:fixed;
 }
 .phone2{ --bg:#F3F4F6; --panel:#FFFFFF; --panel2:#FBFBFC; --txt:#0E1116; --mut:#6B7280; --acc:#D2232A; --lnb:rgba(14,17,22,.10);
-  position:relative; isolation:isolate; overflow:hidden; border-radius:26px; border:1px solid rgba(14,17,22,.08);
-  padding:28px 15px 26px; min-height:660px; color:var(--txt); background:var(--bg);
-  box-shadow:0 26px 60px rgba(14,17,22,.22);
-  width:100%; max-width:430px; margin:0 auto;
-  background-image:repeating-linear-gradient(0deg,rgba(21,101,192,.06) 0 1px,transparent 1px 26px),
-                   repeating-linear-gradient(90deg,rgba(21,101,192,.06) 0 1px,transparent 1px 26px); }
-.phone2.v-E { --acc:#1565C0; --glow1:rgba(21,101,192,.20); --glow2:rgba(30,64,120,.11); --glow3:rgba(21,101,192,.11); }
+  position:relative; isolation:isolate; z-index:1;
+  padding:28px 18px 40px; min-height:100vh; color:var(--txt); background:transparent;
+  width:100%; max-width:480px; margin:0 auto; }
+.phone2.v-E { --acc:#1565C0; --glow1:rgba(21,101,192,.18); --glow2:rgba(30,64,120,.10); --glow3:rgba(21,101,192,.10); }
 
 .phone2 .blob { position:absolute; border-radius:50%; z-index:-1; filter:blur(56px); }
 .phone2 .b1 { width:210px; height:210px; left:-90px; bottom:-90px; background:var(--glow1); animation:d1 17s ease-in-out infinite alternate; }
@@ -149,22 +151,12 @@ body{
    de cada tarjeta y adaptacion a telefonos.
    ============================================================ */
 
-/* Fondo de marca full-bleed: elimina las franjas oscuras laterales en PC. */
-html {
-  background:
-    radial-gradient(900px 620px at 10% -8%, rgba(21,101,192,.55), transparent 62%),
-    radial-gradient(820px 620px at 106% 110%, rgba(30,64,120,.55), transparent 60%),
-    linear-gradient(160deg, #0B2A5B 0%, #0B0F18 58%, #123A6B 100%);
-  background-attachment: fixed;
-}
-body { background: transparent; }
+/* Fondo de marca continuo y adaptacion responsiva: sin simulacion de marco de telefono. */
 body::before {
   content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none;
-  background-image:
-    repeating-linear-gradient(0deg, rgba(255,255,255,.045) 0 1px, transparent 1px 34px),
-    repeating-linear-gradient(90deg, rgba(255,255,255,.045) 0 1px, transparent 1px 34px);
-  -webkit-mask-image: radial-gradient(78% 78% at 50% 34%, #000 0%, transparent 100%);
-          mask-image: radial-gradient(78% 78% at 50% 34%, #000 0%, transparent 100%);
+  background:
+    radial-gradient(900px 600px at 15% -8%, rgba(21,101,192,.16), transparent 60%),
+    radial-gradient(850px 600px at 85% 108%, rgba(30,64,120,.10), transparent 60%);
 }
 .phone2 { z-index: 1; }
 
@@ -185,8 +177,8 @@ body::before {
 
 /* Adaptacion a telefonos pequenos. */
 @media (max-width: 400px) {
-  body { padding: 10px 8px 18px; }
-  .phone2 { border-radius: 20px; padding: 22px 12px 22px; }
+  body { padding: 0; }
+  .phone2 { padding: 20px 12px 24px; }
 }
 @media (max-width: 360px) {
   .car .m { width: 78px; height: 124px; }

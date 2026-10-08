@@ -57,9 +57,8 @@ test('el CSS no arrastra selectores de otras variantes', () => {
   assert.doesNotMatch(css, /\.newbox/);
 });
 
-test('la pagina centra la columna en fondo oscuro', () => {
-  assert.match(css, /max-width:\s*430px/);
-  assert.match(css, /#0B0F18|#0b0f18/);
+test('la pagina tiene diseno responsivo centrado', () => {
+  assert.match(css, /max-width:\s*480px/);
 });
 
 test('respeta prefers-reduced-motion', () => {
