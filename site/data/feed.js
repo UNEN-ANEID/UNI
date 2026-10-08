@@ -1,6 +1,6 @@
 (function (root) {
   root.UNEN_FEED = {
-  "generatedAt": "2026-10-08T03:55:21Z",
+  "generatedAt": "2026-10-08T03:58:25Z",
   "rotationMs": 6000,
   "order": [
     "tt",
@@ -34,7 +34,7 @@
         "net": "tt",
         "cap": "Primer lab de soldadura: práctica, aprendizaje y mucha actitud. 🔥✨ 💛⚙️🔥",
         "url": "https://www.tiktok.com/@unen.industrial.uni/video/7692285895461981447",
-        "tm": "hace 4 d",
+        "tm": "hace 5 d",
         "img": "assets/posts/tt_7692285895461981447.jpg"
       }
     ],
