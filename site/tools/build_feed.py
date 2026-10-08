@@ -59,6 +59,11 @@ RSS_BRIDGES = [
 FB_PAGE = 'Unen-Industrial-61594093749350'
 FB_PAGE_URL = 'https://www.facebook.com/' + FB_PAGE
 
+# Fuente externa de Facebook (hoja de calculo publicada como CSV o un feed
+# Atom/RSS). Si esta vacia, el comportamiento es el de siempre: se conserva
+# la ultima tanda buena. Se configura con la variable de repositorio FB_FEED_URL.
+FB_FEED_URL = os.environ.get('FB_FEED_URL', '').strip()
+
 
 # ---------------------------------------------------------------- utilidades
 def now_utc():
@@ -356,6 +361,100 @@ def fetch_facebook(limit=3):
     return []
 
 
+# ------------------------------------------------- Facebook desde una hoja
+_FB_COL_ALIASES = {
+    'cap': ('caption', 'cap', 'texto', 'text', 'descripcion', 'titulo'),
+    'url': ('url', 'enlace', 'link', 'permalink'),
+    'fecha': ('fecha', 'date', 'tm', 'cuando'),
+    'img': ('imagen', 'img', 'image', 'thumb', 'miniatura', 'foto'),
+}
+
+
+def _norm_key(s):
+    return re.sub(r'[^a-z]', '', (s or '').strip().lower())
+
+
+def parse_fb_date(s):
+    """Acepta ISO, 'dd/mm/aaaa' o 'dd-mm-aaaa'. Devuelve datetime UTC o None."""
+    s = (s or '').strip()
+    if not s:
+        return None
+    try:
+        dt = datetime.datetime.fromisoformat(s.replace('Z', '+00:00'))
+        return dt if dt.tzinfo else dt.replace(tzinfo=datetime.timezone.utc)
+    except Exception:
+        pass
+    for fmt in ('%d/%m/%Y', '%d-%m-%Y', '%d.%m.%Y', '%d/%m/%y'):
+        try:
+            return datetime.datetime.strptime(s, fmt).replace(tzinfo=datetime.timezone.utc)
+        except Exception:
+            continue
+    return None
+
+
+def parse_fb_table(text):
+    """Lee una tabla CSV/TSV con encabezados, o un Atom/RSS. Devuelve filas
+    {cap, url, when, img_url}. Tolera encabezados con acentos o mayusculas."""
+    stripped = (text or '').lstrip('\ufeff \t\r\n')
+    if not stripped:
+        return []
+    if stripped.startswith('<'):
+        return [{'cap': r['cap'], 'url': r['url'], 'when': r['when'], 'img_url': r['thumb']}
+                for r in parse_atom(text)]
+    import csv as _csv
+    import io as _io
+    sample = stripped[:4000]
+    delim = '\t' if sample.count('\t') > sample.count(',') else ','
+    table = [r for r in _csv.reader(_io.StringIO(stripped), delimiter=delim)
+             if any((c or '').strip() for c in r)]
+    if not table:
+        return []
+    header = [_norm_key(c) for c in table[0]]
+    idx = {}
+    for key, aliases in _FB_COL_ALIASES.items():
+        wanted = [_norm_key(a) for a in aliases]
+        for i, h in enumerate(header):
+            if h in wanted:
+                idx[key] = i
+                break
+    if 'cap' in idx or 'url' in idx:
+        body = table[1:]
+    else:
+        idx = {'cap': 0, 'url': 1, 'fecha': 2, 'img': 3}
+        body = table
+    out = []
+    for r in body:
+        def cell(k):
+            i = idx.get(k)
+            return r[i].strip() if i is not None and i < len(r) else ''
+        cap, url = cell('cap'), cell('url')
+        if not cap and not url:
+            continue
+        out.append({'cap': cap, 'url': url,
+                    'when': parse_fb_date(cell('fecha')),
+                    'img_url': cell('img')})
+    return out
+
+
+def fetch_facebook_sheet(url, limit=3):
+    """Facebook desde una hoja publicada (CSV) o un feed Atom/RSS externo."""
+    r = requests.get(url, timeout=40, headers=HEADERS)
+    r.raise_for_status()
+    posts = []
+    for i, row in enumerate(parse_fb_table(r.text)):
+        cap = row['cap']
+        if len(cap) < 12:
+            continue
+        img = None
+        if row.get('img_url'):
+            ident = re.sub(r'\D', '', row.get('url') or '')[:20] or str(i)
+            img = fetch_image(row['img_url'], os.path.join(POSTS, slug('fb', ident) + '.jpg'))
+        posts.append(normalize('fb', cap, row['url'], when=row.get('when'), img=img))
+        if len(posts) >= limit:
+            break
+    return posts
+
+
 # -------------------------------------------------------------------- build
 FETCHERS = {'tt': fetch_tiktok, 'ig': fetch_instagram, 'fb': fetch_facebook}
 
@@ -366,9 +465,20 @@ def build(only=None, check=False, with_fb=False):
     new_pool = {}
     for net in ORDER:
         wanted = (not only or net in only) and net in FETCHERS
-        # Facebook casi siempre falla desde la nube: solo se intenta si lo piden.
-        if net == 'fb' and not (with_fb or (only and 'fb' in only)):
-            wanted = False
+        # Facebook: 1) hoja externa si esta configurada; 2) RSS-Bridge solo si lo piden.
+        if net == 'fb':
+            if FB_FEED_URL and (not only or 'fb' in only):
+                try:
+                    got = fetch_facebook_sheet(FB_FEED_URL) or []
+                    print('[fb] fuente: hoja externa (%d publicaciones)' % len(got))
+                    new_pool[net] = got
+                except Exception as e:
+                    print('[warn] fb hoja fallo: %s' % e)
+                    new_pool[net] = []
+                continue
+            # Facebook casi siempre falla desde la nube: solo se intenta si lo piden.
+            if not (with_fb or (only and 'fb' in only)):
+                wanted = False
         if not wanted:
             new_pool[net] = old_pool.get(net) or []
             continue

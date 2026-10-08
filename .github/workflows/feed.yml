@@ -28,6 +28,8 @@ jobs:
           pip install requests
 
       - name: Generar el feed real
+        env:
+          FB_FEED_URL: ${{ vars.FB_FEED_URL }}
         run: python site/tools/build_feed.py
 
       - name: Publicar cambios
