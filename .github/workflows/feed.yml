@@ -37,7 +37,8 @@ jobs:
           git add site/data site/assets/posts
           if git diff --cached --quiet; then
             echo "sin cambios en el feed"
-          else
-            git commit -m "chore: feed automatico de las redes"
-            git push
+            exit 0
           fi
+          git commit -m "chore: feed automatico de las redes"
+          git pull --rebase --autostash origin main
+          git push
