@@ -15,6 +15,7 @@
 </style>
 </head>
 <body>
+
 <style>
   .p4 { font-family:'Poppins',system-ui,-apple-system,sans-serif; }
   .p4 h2 { font-size:1.5rem; }
@@ -29,7 +30,7 @@
   .pchip.on[data-p="C"] { background:#1565C0; color:#fff; border-color:#1565C0; }
   .pchip.on[data-p="D"] { background:linear-gradient(90deg,#4F46E5,#38BDF8 55%,#14B8A6); color:#fff; border-color:transparent; }
   .pchip.on[data-p="E"] { background:linear-gradient(90deg,#1565C0,#38BDF8); color:#fff; border-color:transparent; }
-  .pchip.on[data-p="F"] { background:linear-gradient(90deg,#4F46E5,#DB2777 50%,#14B8A6); color:#fff; border-color:transparent; }
+  .pchip.on[data-p="F"] { background:linear-gradient(90deg,#00d4ff,#ffd100); color:#06222b; border-color:transparent; }
 
   /* ================= phone ================= */
   .phone2 { --bg:#F3F4F6; --panel:#FFFFFF; --panel2:#FBFBFC; --txt:#0E1116; --mut:#6B7280; --acc:#D2232A; --lnb:rgba(14,17,22,.10);
@@ -63,7 +64,6 @@
   .phone2.v-C .hero-gear { display:block; }
   .phone2.v-D .hero-fun { display:block; }
   .phone2.v-E .hero-bp { display:block; }
-  .phone2.v-F .hero-gear { display:block; }
 
   /* ===== logo: redondo, ajustado, nada encima ===== */
   .core { position:absolute; left:50%; top:50%; width:clamp(146px,46vw,172px); aspect-ratio:1; transform:translate(-50%,-50%);
@@ -179,14 +179,29 @@
   .lk2:nth-of-type(4)::before{ animation-delay:1.5s } .lk2:nth-of-type(5)::before{ animation-delay:2s }
   @keyframes sheen { 0%{left:-40%} 55%{left:130%} 100%{left:130%} }
 
+  /* B : sin aguja girando - cota tecnica estatica */
+  .phone2.v-B .rotor { display:none; }
+  .phone2.v-B .gauge::before { content:''; position:absolute; left:50%; top:-8px; bottom:-8px; width:0;
+    border-left:1px dashed color-mix(in srgb, var(--acc) 45%, transparent); }
+  .phone2.v-B .gauge::after { content:''; position:absolute; top:50%; left:-8px; right:-8px; height:0;
+    border-top:1px dashed color-mix(in srgb, var(--acc) 45%, transparent); }
   /* ================= E : aro de plano + carrusel + botones grandes ================= */
   .phone2.v-E { --acc:#1565C0; --glow1:rgba(21,101,192,.20); --glow2:rgba(30,64,120,.11); --glow3:rgba(21,101,192,.11); }
-  .phone2.v-F { --bg:#0B1020; --panel:rgba(255,255,255,.075); --panel2:rgba(255,255,255,.05); --txt:#EEF2FF;
-    --mut:#93A0BF; --acc:#38BDF8; --lnb:rgba(255,255,255,.12); border-color:rgba(255,255,255,.10);
-    box-shadow:0 26px 60px rgba(3,6,18,.62); background-image:none;
-    --glow1:rgba(79,70,229,.62); --glow2:rgba(219,39,119,.42); --glow3:rgba(20,184,166,.46); }
-  .phone2.v-F .lk2, .phone2.v-F .stats div { backdrop-filter:blur(9px); -webkit-backdrop-filter:blur(9px); }
-  .phone2.v-F .core { box-shadow:0 12px 30px rgba(0,0,0,.35), 0 0 40px rgba(79,70,229,.55), 0 0 78px rgba(219,39,119,.30); }
+  /* F : fondo tipo referencia + links 2x2 */
+  .phone2.v-F { --bg:#0a0e17; --panel:#121826; --panel2:#161e2e; --txt:#e8eef7;
+    --mut:#8b9bb4; --acc:#00d4ff; --lnb:rgba(255,255,255,.09); border-color:rgba(255,255,255,.09);
+    box-shadow:0 26px 60px rgba(3,6,18,.62);
+    background-image:radial-gradient(ellipse at 20% 20%, rgba(0,212,255,.10) 0%, transparent 50%),
+                     radial-gradient(ellipse at 80% 80%, rgba(255,209,0,.07) 0%, transparent 50%); }
+  .phone2.v-F .blob { display:none; }
+  .phone2.v-F .core { box-shadow:0 0 0 1px rgba(255,255,255,.07), 0 0 24px rgba(0,212,255,.35), 0 12px 30px rgba(0,0,0,.45); }
+  .phone2.v-F .hero { display:none; }
+  .phone2.v-F .lklist { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:10px; }
+  .phone2.v-F .lklist .lk2 { position:relative; margin-top:0; min-height:106px; flex-direction:column; align-items:flex-start; gap:8px; padding:12px 12px 11px; }
+  .phone2.v-F .lklist .lk2 .tx { margin-top:auto; }
+  .phone2.v-F .lklist .lk2 .led { position:absolute; top:12px; right:12px; }
+  .phone2.v-F .lklist .lk2 .chipl { width:38px; height:38px; border-radius:11px; }
+  .phone2.v-F .lklist .lk2:hover { transform:translateY(-2px); border-color:color-mix(in srgb, var(--acc) 45%, transparent); }
 
   /* aro de plano técnico (E) */
   .bp { position:relative; width:236px; height:236px; margin:16px auto 30px; }
