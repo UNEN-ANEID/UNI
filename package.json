@@ -1,0 +1,9 @@
+{
+  "name": "unen-industrial-e",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Pagina link-in-bio UNEN Industrial (variante E) - estatica, sin dependencias",
+  "scripts": {
+    "test": "node --test"
+  }
+}

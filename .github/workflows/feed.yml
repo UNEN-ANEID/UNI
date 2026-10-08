@@ -29,13 +29,17 @@ jobs:
           python -m playwright install --with-deps chromium
 
       - name: Generar el feed real
-        run: python site/tools/build_feed.py
+        run: |
+          python tools/build_feed.py
+          if [ -d "site/tools" ]; then
+            python site/tools/build_feed.py || true
+          fi
 
       - name: Publicar cambios
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add site/data site/assets/posts
+          git add data assets/posts site/data site/assets/posts
           if git diff --cached --quiet; then
             echo "sin cambios en el feed"
           else

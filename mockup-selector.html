@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>UNEN</title>
+<style>
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; min-height:100vh; background:#080b12; color:#e8eef7;
+    font-family:ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif;
+    display:flex; flex-direction:column; align-items:center;
+    padding:88px 18px 56px; overflow-x:hidden;
+  }
+  body::before{
+    content:''; position:fixed; inset:-30%; z-index:0; pointer-events:none;
+    background:
+      radial-gradient(ellipse at 18% 14%, rgba(79,70,229,.20), transparent 52%),
+      radial-gradient(ellipse at 84% 76%, rgba(56,189,248,.16), transparent 50%),
+      radial-gradient(ellipse at 50% 52%, rgba(210,35,42,.10), transparent 58%);
+    filter:blur(48px);
+    animation:drift 24s ease-in-out infinite alternate;
+  }
+  @keyframes drift{ from{transform:translate3d(-2%,-1%,0) scale(1)} to{transform:translate3d(2%,2%,0) scale(1.08)} }
+
+  /* barra de pestañas */
+  nav.tabs{
+    position:fixed; left:50%; top:14px; transform:translateX(-50%); z-index:10;
+    display:flex; gap:6px; padding:7px; max-width:calc(100vw - 20px);
+    background:rgba(12,16,26,.74); border:1px solid rgba(255,255,255,.12);
+    border-radius:999px; backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+    box-shadow:0 12px 30px rgba(0,0,0,.45); overflow-x:auto; scrollbar-width:none;
+  }
+  nav.tabs::-webkit-scrollbar{ display:none }
+  nav.tabs button{
+    flex:none; min-width:38px; height:38px; padding:0 12px; cursor:pointer;
+    display:grid; place-items:center; border:0; background:transparent;
+    border-radius:999px; color:#cbd5e6; font:inherit;
+    font-weight:700; font-size:14px; letter-spacing:.04em;
+    transition:background .25s, color .25s, transform .25s;
+  }
+  nav.tabs button:hover{ background:rgba(255,255,255,.10); color:#fff; transform:translateY(-1px); }
+  nav.tabs button[aria-selected="true"]{ background:#fff; color:#0b0f18; }
+
+  /* escenario */
+  .stage{ position:relative; z-index:1; display:flex; flex-direction:column; align-items:center; gap:16px; }
+
+  .cap{
+    font-weight:700; font-size:13px; line-height:1; letter-spacing:.24em; text-transform:uppercase;
+    color:#eef2ff; background:rgba(255,255,255,.07);
+    border:1px solid rgba(255,255,255,.14); padding:9px 20px; border-radius:999px;
+    transition:opacity .3s;
+  }
+
+  .ph{
+    width:min(392px,92vw); height:min(748px,162vw);
+    border-radius:34px; overflow:hidden; background:#0b0f18;
+    border:1px solid rgba(255,255,255,.12);
+    box-shadow:0 30px 70px rgba(0,0,0,.55);
+    transition:transform .45s cubic-bezier(.2,.7,.2,1), box-shadow .45s, border-color .45s;
+  }
+  .ph:hover{ transform:translateY(-6px); box-shadow:0 46px 92px rgba(0,0,0,.62); border-color:rgba(255,255,255,.20); }
+  .ph iframe{ width:100%; height:100%; border:0; display:block; }
+
+  .actions{ display:flex; gap:10px; align-items:center; }
+  .actions a{
+    display:inline-flex; align-items:center; gap:7px; text-decoration:none;
+    font-weight:600; font-size:13.5px; color:#dbe4f2;
+    background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.16);
+    padding:10px 18px; border-radius:999px;
+    transition:background .25s, transform .25s, border-color .25s;
+  }
+  .actions a:hover{ background:rgba(255,255,255,.16); transform:translateY(-1px); border-color:rgba(255,255,255,.28); }
+  .actions a svg{ width:15px; height:15px; }
+
+  .fade{ animation:fade .5s cubic-bezier(.2,.7,.2,1) }
+  @keyframes fade{ from{opacity:0; transform:translateY(14px)} to{opacity:1; transform:none} }
+
+  @media (max-width:900px){
+    body{ padding:80px 12px 40px; }
+    .ph{ width:min(392px,95vw); height:min(700px,164vw); border-radius:28px; }
+  }
+  @media (max-width:380px){
+    nav.tabs button{ min-width:34px; height:34px; padding:0 10px; font-size:13px; }
+  }
+</style>
+</head>
+<body>
+<nav class="tabs" role="tablist" aria-label="Propuestas">
+  <button type="button" role="tab" data-v="A" aria-selected="false">A</button>
+  <button type="button" role="tab" data-v="B" aria-selected="false">B</button>
+  <button type="button" role="tab" data-v="C" aria-selected="false">C</button>
+  <button type="button" role="tab" data-v="D" aria-selected="false">D</button>
+  <button type="button" role="tab" data-v="E" aria-selected="true">E</button>
+  <button type="button" role="tab" data-v="F" aria-selected="false">F</button>
+</nav>
+
+<main class="stage">
+  <span class="cap" id="cap">Propuesta E</span>
+  <div class="ph" id="phone"><iframe id="frame" src="mockup.html?v=E&amp;embed=1" title="Propuesta E"></iframe></div>
+  <div class="actions">
+    <a id="open" href="mockup.html?v=E&amp;embed=1" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6"/><path d="M20 4 10.5 13.5"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>
+      Abrir a pantalla completa
+    </a>
+  </div>
+</main>
+
+<script>
+(function(){
+  var NAMES = {A:'Acero Grafito',B:'Papel Técnico',C:'Six Sigma',D:'Taller industrial',E:'Papel + carrusel',F:'Colorido'};
+  var tabs  = Array.prototype.slice.call(document.querySelectorAll('nav.tabs button'));
+  var frame = document.getElementById('frame');
+  var cap   = document.getElementById('cap');
+  var open  = document.getElementById('open');
+  var phone = document.getElementById('phone');
+
+  function show(v, push){
+    v = (NAMES[v] ? v : 'E');
+    tabs.forEach(function(t){ t.setAttribute('aria-selected', String(t.dataset.v === v)); });
+    var url = 'mockup.html?v=' + v + '&embed=1';
+    if(frame.getAttribute('src') !== url){
+      frame.setAttribute('src', url);
+      cap.textContent  = 'Propuesta ' + v + ' · ' + NAMES[v];
+      frame.setAttribute('title', 'Propuesta ' + v);
+      open.setAttribute('href', url);
+      phone.classList.remove('fade'); void phone.offsetWidth; phone.classList.add('fade');
+    }
+    if(push !== false && history.replaceState){ history.replaceState(null,'','#'+v); }
+  }
+
+  tabs.forEach(function(t){
+    t.addEventListener('click', function(){ show(t.dataset.v); });
+  });
+
+  document.addEventListener('keydown', function(e){
+    var i = tabs.findIndex(function(t){ return t.getAttribute('aria-selected') === 'true'; });
+    if(e.key === 'ArrowRight'){ show(tabs[(i+1)%tabs.length].dataset.v); }
+    else if(e.key === 'ArrowLeft'){ show(tabs[(i-1+tabs.length)%tabs.length].dataset.v); }
+  });
+
+  show((location.hash || '').replace('#','') || 'E', false);
+})();
+</script>
+</body>
+</html>
