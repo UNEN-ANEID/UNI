@@ -172,6 +172,10 @@ body::before {
 }
 .phone2 { z-index: 1; }
 
+/* Los adornos (blob) no deben provocar scroll horizontal en el telefono. */
+html { overflow-x: clip; }
+.phone2 { overflow: clip; }
+
 /* Miniatura real de cada publicacion dentro de la tarjeta. */
 .car .sl { position: relative; }
 .car .bd { justify-content: center; }
