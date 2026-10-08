@@ -129,7 +129,32 @@
     return false;
   }
 
+  function initShareButton() {
+    var btn = document.getElementById('btnShare');
+    if (!btn) return;
+    btn.addEventListener('click', function () {
+      var shareData = {
+        title: 'UNEN Industrial | Enlaces Oficiales',
+        text: 'Canales oficiales y publicaciones de UNEN Industrial - UNI',
+        url: window.location.href
+      };
+      if (typeof navigator !== 'undefined' && navigator.share) {
+        navigator.share(shareData).catch(function () {});
+      } else if (typeof navigator !== 'undefined' && navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(window.location.href).then(function () {
+          var span = btn.querySelector('span');
+          if (span) {
+            var old = span.textContent;
+            span.textContent = '¡Enlace copiado!';
+            setTimeout(function () { span.textContent = old; }, 2200);
+          }
+        }).catch(function () {});
+      }
+    });
+  }
+
   function load() {
+    initShareButton();
     renderLinks();
     var fallback = isValidFeed(window.UNEN_FEED) ? window.UNEN_FEED : null;
 

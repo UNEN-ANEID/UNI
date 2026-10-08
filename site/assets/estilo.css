@@ -97,6 +97,18 @@ body{
 .phone2 h4 em { font-style:normal; color:var(--acc); }
 .phone2 .sub { font-size:.68rem; color:var(--mut); text-align:center; margin-top:3px; line-height:1.35; }
 
+.actions { display:flex; justify-content:center; margin:10px 0 2px; }
+.btn-share {
+  background:var(--panel); border:1px solid var(--lnb); border-radius:20px;
+  padding:6px 14px; font-size:.72rem; font-weight:600; color:var(--txt);
+  font-family:inherit; display:inline-flex; align-items:center; gap:6px;
+  cursor:pointer; transition:transform .15s ease, border-color .2s ease, box-shadow .2s ease;
+  box-shadow:0 2px 6px rgba(0,0,0,.04);
+}
+.btn-share:hover { border-color:color-mix(in srgb, var(--acc) 50%, transparent); color:var(--acc); }
+.btn-share svg { width:13px; height:13px; }
+.btn-share:active, .phone2.v-E .lklist .lk2:active { transform:scale(.97) !important; transition:transform 80ms ease-out; }
+
 .stats { display:flex; gap:7px; margin:14px 0 4px; }
 .stats div { flex:1; background:var(--panel); border:1px solid var(--lnb); border-radius:12px; padding:8px 6px; text-align:center; }
 .stats b { display:block; font-size:.9rem; font-weight:700; }
