@@ -1,6 +1,6 @@
 (function (root) {
   root.UNEN_FEED = {
-  "generatedAt": "2026-10-08T12:32:20Z",
+  "generatedAt": "2026-10-09T12:21:22Z",
   "rotationMs": 6000,
   "order": [
     "tt",
@@ -13,28 +13,28 @@
         "net": "tt",
         "cap": "Un pequeño vlog y detrás de cámaras 💙✨",
         "url": "https://www.tiktok.com/@unen.industrial.uni/video/7693385217389743412",
-        "tm": "hace 2 d",
+        "tm": "hace 3 d",
         "img": "assets/posts/tt_7693385217389743412.jpg"
       },
       {
         "net": "tt",
         "cap": "El trabajo en equipo siempre dará buenos resultados, felicitamos a todos los chic@S que hicieron posible esta hermosa actividad de EDUCACIÓN VIAL-PINTA,APRENDE Y SALVA VIDAS” ✨",
         "url": "https://www.tiktok.com/@unen.industrial.uni/video/7693331060033080597",
-        "tm": "hace 2 d",
+        "tm": "hace 3 d",
         "img": "assets/posts/tt_7693331060033080597.jpg"
       },
       {
         "net": "tt",
         "cap": "Día internacional de la Educación Vial",
         "url": "https://www.tiktok.com/@unen.industrial.uni/video/7693248252572863764",
-        "tm": "hace 2 d",
+        "tm": "hace 3 d",
         "img": "assets/posts/tt_7693248252572863764.jpg"
       },
       {
         "net": "tt",
         "cap": "Primer lab de soldadura: práctica, aprendizaje y mucha actitud. 🔥✨ 💛⚙️🔥",
         "url": "https://www.tiktok.com/@unen.industrial.uni/video/7692285895461981447",
-        "tm": "hace 2 d",
+        "tm": "hace 3 d",
         "img": "assets/posts/tt_7692285895461981447.jpg"
       }
     ],
@@ -43,7 +43,7 @@
         "net": "ig",
         "cap": "Educación vial ✨",
         "url": "https://www.instagram.com/p/DeIZSwJxhJM/",
-        "tm": "hace 2 d",
+        "tm": "hace 3 d",
         "img": "assets/posts/ig_DeIZSwJxhJM.jpg"
       },
       {
