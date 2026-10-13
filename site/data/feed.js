@@ -1,6 +1,6 @@
 (function (root) {
   root.UNEN_FEED = {
-  "generatedAt": "2026-10-12T14:00:39Z",
+  "generatedAt": "2026-10-13T13:15:25Z",
   "rotationMs": 6000,
   "order": [
     "tt",
@@ -11,39 +11,46 @@
     "tt": [
       {
         "net": "tt",
+        "cap": "🇳🇮✨ ¡Cultura, identidad y tradición que nos unen! ✨🤎 El día de hoy vivimos una jornada llena de alegría, compañerismo y aprendizaje a través de los juegos lúdicos en conmemoración del Día de la Resist",
+        "url": "https://www.tiktok.com/@unen.industrial.uni/video/7695845017205755156",
+        "tm": "hace 19 h",
+        "img": "assets/posts/tt_7695845017205755156.jpg"
+      },
+      {
+        "net": "tt",
         "cap": "Katherinne Nahomi Olivas Benavidez, Reina UNEN UNI, estuvo presente en la competencia de trajes. Encantos del Huipil.",
         "url": "https://www.tiktok.com/@unen.industrial.uni/video/7694895291467648277",
-        "tm": "hace 2 d",
+        "tm": "hace 19 h",
         "img": "assets/posts/tt_7694895291467648277.jpg"
       },
       {
         "net": "tt",
         "cap": "✨Nuestra feria de emprendimiento fue un espacio para descubrir nuevas ideas, apoyar el talento universitario y conocer proyectos que demuestran que los grasueños comienzan con pequeñas iniciativas. 💡 ",
         "url": "https://www.tiktok.com/@unen.industrial.uni/video/7694872717853609268",
-        "tm": "hace 2 d",
+        "tm": "hace 3 d",
         "img": "assets/posts/tt_7694872717853609268.jpg"
       },
       {
         "net": "tt",
         "cap": "Un pequeño vlog y detrás de cámaras 💙✨",
         "url": "https://www.tiktok.com/@unen.industrial.uni/video/7693385217389743412",
-        "tm": "hace 2 d",
+        "tm": "hace 3 d",
         "img": "assets/posts/tt_7693385217389743412.jpg"
-      },
-      {
-        "net": "tt",
-        "cap": "El trabajo en equipo siempre dará buenos resultados, felicitamos a todos los chic@S que hicieron posible esta hermosa actividad de EDUCACIÓN VIAL-PINTA,APRENDE Y SALVA VIDAS” ✨",
-        "url": "https://www.tiktok.com/@unen.industrial.uni/video/7693331060033080597",
-        "tm": "hace 6 d",
-        "img": "assets/posts/tt_7693331060033080597.jpg"
       }
     ],
     "ig": [
       {
         "net": "ig",
+        "cap": "🇳🇮✨ ¡Cultura, identidad y tradición que nos unen! ✨🤎 El día de hoy vivimos una jornada llena de alegría, compañerismo y aprendizaje a través de los juegos lúdicos en conmemoración del Día de la Resist",
+        "url": "https://www.instagram.com/p/DeZzZMOkV2C/",
+        "tm": "hace 19 h",
+        "img": "assets/posts/ig_DeZzZMOkV2C.jpg"
+      },
+      {
+        "net": "ig",
         "cap": "Educación vial ✨",
         "url": "https://www.instagram.com/p/DeIZSwJxhJM/",
-        "tm": "hace 6 d",
+        "tm": "05/10/2026",
         "img": "assets/posts/ig_DeIZSwJxhJM.jpg"
       },
       {
