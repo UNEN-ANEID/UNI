@@ -1,6 +1,6 @@
 (function (root) {
   root.UNEN_FEED = {
-  "generatedAt": "2026-10-15T10:37:06Z",
+  "generatedAt": "2026-10-16T10:23:59Z",
   "rotationMs": 6000,
   "order": [
     "tt",
@@ -13,28 +13,28 @@
         "net": "tt",
         "cap": "Teatro Justo Rufino Garay, intérprete Eduardo de la carrera de Arquitectura, miembro del teatro 🎭 de la UNI, función de Carlos Fonseca.",
         "url": "https://www.tiktok.com/@unen.industrial.uni/video/7696735946338897173",
-        "tm": "hace 6 h",
+        "tm": "ayer",
         "img": "assets/posts/tt_7696735946338897173.jpg"
       },
       {
         "net": "tt",
         "cap": "Visita de la comisión de universidades verdes en la UNI, en el Recinto Universitorio Pedro Arauz Palacios.",
         "url": "https://www.tiktok.com/@unen.industrial.uni/video/7696615583529307412",
-        "tm": "hace 6 h",
+        "tm": "ayer",
         "img": "assets/posts/tt_7696615583529307412.jpg"
       },
       {
         "net": "tt",
         "cap": "🇳🇮✨ ¡Cultura, identidad y tradición que nos unen! ✨🤎 El día de hoy vivimos una jornada llena de alegría, compañerismo y aprendizaje a través de los juegos lúdicos en conmemoración del Día de la Resist",
         "url": "https://www.tiktok.com/@unen.industrial.uni/video/7695845017205755156",
-        "tm": "hace 14 h",
+        "tm": "ayer",
         "img": "assets/posts/tt_7695845017205755156.jpg"
       },
       {
         "net": "tt",
         "cap": "Katherinne Nahomi Olivas Benavidez, Reina UNEN UNI, estuvo presente en la competencia de trajes. Encantos del Huipil.",
         "url": "https://www.tiktok.com/@unen.industrial.uni/video/7694895291467648277",
-        "tm": "hace 2 d",
+        "tm": "hace 3 d",
         "img": "assets/posts/tt_7694895291467648277.jpg"
       }
     ],
@@ -43,7 +43,7 @@
         "net": "ig",
         "cap": "🇳🇮✨ ¡Cultura, identidad y tradición que nos unen! ✨🤎 El día de hoy vivimos una jornada llena de alegría, compañerismo y aprendizaje a través de los juegos lúdicos en conmemoración del Día de la Resist",
         "url": "https://www.instagram.com/p/DeZzZMOkV2C/",
-        "tm": "hace 2 d",
+        "tm": "hace 3 d",
         "img": "assets/posts/ig_DeZzZMOkV2C.jpg"
       },
       {
