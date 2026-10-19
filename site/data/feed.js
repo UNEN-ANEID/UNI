@@ -1,6 +1,6 @@
 (function (root) {
   root.UNEN_FEED = {
-  "generatedAt": "2026-10-18T10:08:58Z",
+  "generatedAt": "2026-10-19T11:40:37Z",
   "rotationMs": 6000,
   "order": [
     "tt",
@@ -11,31 +11,27 @@
     "tt": [
       {
         "net": "tt",
-        "cap": "Teatro Justo Rufino Garay, intérprete Eduardo de la carrera de Arquitectura, miembro del teatro 🎭 de la UNI, función de Carlos Fonseca.",
+        "cap": "Ver las ultimas publicaciones en TikTok",
         "url": "https://www.tiktok.com/@unen.industrial.uni/video/7696735946338897173",
-        "tm": "hace 3 d",
-        "img": "assets/posts/tt_7696735946338897173.jpg"
+        "tm": "hace 4 d"
       },
       {
         "net": "tt",
-        "cap": "Visita de la comisión de universidades verdes en la UNI, en el Recinto Universitorio Pedro Arauz Palacios.",
+        "cap": "Ver las ultimas publicaciones en TikTok",
         "url": "https://www.tiktok.com/@unen.industrial.uni/video/7696615583529307412",
-        "tm": "hace 3 d",
-        "img": "assets/posts/tt_7696615583529307412.jpg"
+        "tm": "hace 4 d"
       },
       {
         "net": "tt",
-        "cap": "🇳🇮✨ ¡Cultura, identidad y tradición que nos unen! ✨🤎 El día de hoy vivimos una jornada llena de alegría, compañerismo y aprendizaje a través de los juegos lúdicos en conmemoración del Día de la Resist",
+        "cap": "Ver las ultimas publicaciones en TikTok",
         "url": "https://www.tiktok.com/@unen.industrial.uni/video/7695845017205755156",
-        "tm": "hace 3 d",
-        "img": "assets/posts/tt_7695845017205755156.jpg"
+        "tm": "hace 4 d"
       },
       {
         "net": "tt",
-        "cap": "Katherinne Nahomi Olivas Benavidez, Reina UNEN UNI, estuvo presente en la competencia de trajes. Encantos del Huipil.",
+        "cap": "Ver las ultimas publicaciones en TikTok",
         "url": "https://www.tiktok.com/@unen.industrial.uni/video/7694895291467648277",
-        "tm": "hace 5 d",
-        "img": "assets/posts/tt_7694895291467648277.jpg"
+        "tm": "hace 6 d"
       }
     ],
     "ig": [
@@ -43,7 +39,7 @@
         "net": "ig",
         "cap": "🇳🇮✨ ¡Cultura, identidad y tradición que nos unen! ✨🤎 El día de hoy vivimos una jornada llena de alegría, compañerismo y aprendizaje a través de los juegos lúdicos en conmemoración del Día de la Resist",
         "url": "https://www.instagram.com/p/DeZzZMOkV2C/",
-        "tm": "hace 5 d",
+        "tm": "hace 6 d",
         "img": "assets/posts/ig_DeZzZMOkV2C.jpg"
       },
       {
