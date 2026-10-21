@@ -1,6 +1,6 @@
 (function (root) {
   root.UNEN_FEED = {
-  "generatedAt": "2026-10-20T10:43:12Z",
+  "generatedAt": "2026-10-21T10:54:10Z",
   "rotationMs": 6000,
   "order": [
     "tt",
@@ -12,29 +12,43 @@
       {
         "net": "tt",
         "cap": "Ver las ultimas publicaciones en TikTok",
+        "url": "https://www.tiktok.com/@unen.industrial.uni/video/7698915584846744853",
+        "tm": "hace 10 h"
+      },
+      {
+        "net": "tt",
+        "cap": "Ver las ultimas publicaciones en TikTok",
         "url": "https://www.tiktok.com/@unen.industrial.uni/video/7696735946338897173",
-        "tm": "hace 5 d"
+        "tm": "hace 10 h"
       },
       {
         "net": "tt",
         "cap": "Ver las ultimas publicaciones en TikTok",
         "url": "https://www.tiktok.com/@unen.industrial.uni/video/7696615583529307412",
-        "tm": "hace 5 d"
+        "tm": "hace 6 d"
       },
       {
         "net": "tt",
         "cap": "Ver las ultimas publicaciones en TikTok",
         "url": "https://www.tiktok.com/@unen.industrial.uni/video/7695845017205755156",
-        "tm": "hace 5 d"
-      },
-      {
-        "net": "tt",
-        "cap": "Ver las ultimas publicaciones en TikTok",
-        "url": "https://www.tiktok.com/@unen.industrial.uni/video/7694895291467648277",
-        "tm": "13/10/2026"
+        "tm": "hace 6 d"
       }
     ],
     "ig": [
+      {
+        "net": "ig",
+        "cap": "Feria Vocacional.",
+        "url": "https://www.instagram.com/p/DevVmXrjatR/",
+        "tm": "hace 8 h",
+        "img": "assets/posts/ig_DevVmXrjatR.jpg"
+      },
+      {
+        "net": "ig",
+        "cap": "Feria Vocacional 2026",
+        "url": "https://www.instagram.com/p/DevVMzzN8OK/",
+        "tm": "hace 8 h",
+        "img": "assets/posts/ig_DevVMzzN8OK.jpg"
+      },
       {
         "net": "ig",
         "cap": "🇳🇮✨ ¡Cultura, identidad y tradición que nos unen! ✨🤎 El día de hoy vivimos una jornada llena de alegría, compañerismo y aprendizaje a través de los juegos lúdicos en conmemoración del Día de la Resist",
@@ -48,13 +62,6 @@
         "url": "https://www.instagram.com/p/DeIZSwJxhJM/",
         "tm": "05/10/2026",
         "img": "assets/posts/ig_DeIZSwJxhJM.jpg"
-      },
-      {
-        "net": "ig",
-        "cap": "Pov: los industriales en laboratorios de química",
-        "url": "https://www.instagram.com/p/DdosxSSxUbu/",
-        "tm": "23/09/2026",
-        "img": "assets/posts/ig_DdosxSSxUbu.jpg"
       }
     ],
     "fb": [
