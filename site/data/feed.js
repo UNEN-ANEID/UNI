@@ -1,6 +1,6 @@
 (function (root) {
   root.UNEN_FEED = {
-  "generatedAt": "2026-10-27T11:19:34Z",
+  "generatedAt": "2026-10-28T11:53:15Z",
   "rotationMs": 6000,
   "order": [
     "tt",
@@ -13,25 +13,25 @@
         "net": "tt",
         "cap": "Ver las ultimas publicaciones en TikTok",
         "url": "https://www.tiktok.com/@unen.industrial.uni/video/7698915584846744853",
-        "tm": "hace 6 d"
+        "tm": "21/10/2026"
       },
       {
         "net": "tt",
         "cap": "Ver las ultimas publicaciones en TikTok",
         "url": "https://www.tiktok.com/@unen.industrial.uni/video/7696735946338897173",
-        "tm": "hace 6 d"
+        "tm": "21/10/2026"
       },
       {
         "net": "tt",
         "cap": "Ver las ultimas publicaciones en TikTok",
         "url": "https://www.tiktok.com/@unen.industrial.uni/video/7696615583529307412",
-        "tm": "20/10/2026"
+        "tm": "21/10/2026"
       },
       {
         "net": "tt",
         "cap": "Ver las ultimas publicaciones en TikTok",
         "url": "https://www.tiktok.com/@unen.industrial.uni/video/7695845017205755156",
-        "tm": "20/10/2026"
+        "tm": "21/10/2026"
       }
     ],
     "ig": [
@@ -39,14 +39,14 @@
         "net": "ig",
         "cap": "Feria Vocacional.",
         "url": "https://www.instagram.com/p/DevVmXrjatR/",
-        "tm": "hace 6 d",
+        "tm": "21/10/2026",
         "img": "assets/posts/ig_DevVmXrjatR.jpg"
       },
       {
         "net": "ig",
         "cap": "Feria Vocacional 2026",
         "url": "https://www.instagram.com/p/DevVMzzN8OK/",
-        "tm": "hace 6 d",
+        "tm": "21/10/2026",
         "img": "assets/posts/ig_DevVMzzN8OK.jpg"
       },
       {
