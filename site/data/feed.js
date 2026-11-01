@@ -1,6 +1,6 @@
 (function (root) {
   root.UNEN_FEED = {
-  "generatedAt": "2026-10-31T11:28:21Z",
+  "generatedAt": "2026-11-01T12:24:41Z",
   "rotationMs": 6000,
   "order": [
     "tt",
@@ -12,26 +12,26 @@
       {
         "net": "tt",
         "cap": "Ver las ultimas publicaciones en TikTok",
+        "url": "https://www.tiktok.com/@unen.industrial.uni/video/7703025531133889812",
+        "tm": "hace 9 h"
+      },
+      {
+        "net": "tt",
+        "cap": "Ver las ultimas publicaciones en TikTok",
         "url": "https://www.tiktok.com/@unen.industrial.uni/video/7698915584846744853",
-        "tm": "24/10/2026"
+        "tm": "hace 9 h"
       },
       {
         "net": "tt",
         "cap": "Ver las ultimas publicaciones en TikTok",
         "url": "https://www.tiktok.com/@unen.industrial.uni/video/7696735946338897173",
-        "tm": "24/10/2026"
+        "tm": "25/10/2026"
       },
       {
         "net": "tt",
         "cap": "Ver las ultimas publicaciones en TikTok",
         "url": "https://www.tiktok.com/@unen.industrial.uni/video/7696615583529307412",
-        "tm": "17/10/2026"
-      },
-      {
-        "net": "tt",
-        "cap": "Ver las ultimas publicaciones en TikTok",
-        "url": "https://www.tiktok.com/@unen.industrial.uni/video/7695845017205755156",
-        "tm": "17/10/2026"
+        "tm": "18/10/2026"
       }
     ],
     "ig": [
@@ -39,14 +39,14 @@
         "net": "ig",
         "cap": "¡LLEGARON LOS AGÜIZOTES A LA UNI! 💀🔥 ¿Estás listo para el cierre de semestre más macabro del año? La tradición se toma la Avenida Universitaria y vos no te lo podés perder. 📅 30 de Octubre 📍 Avenida U",
         "url": "https://www.instagram.com/p/DfFCPavxuM1/",
-        "tm": "ayer",
+        "tm": "hace 2 d",
         "img": "assets/posts/ig_DfFCPavxuM1.jpg"
       },
       {
         "net": "ig",
         "cap": "¡LLEGARON LOS AGÜIZOTES A LA UNI! 💀🔥 ¿Estás listo para el cierre de semestre más macabro del año? La tradición se toma la Avenida Universitaria y vos no te lo podés perder. 📅 30 de Octubre 📍 Avenida U",
         "url": "https://www.instagram.com/p/DfFBOaCxJEq/",
-        "tm": "ayer",
+        "tm": "hace 2 d",
         "img": "assets/posts/ig_DfFBOaCxJEq.jpg"
       },
       {
