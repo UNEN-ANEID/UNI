@@ -1,6 +1,6 @@
 (function (root) {
   root.UNEN_FEED = {
-  "generatedAt": "2026-11-03T13:20:49Z",
+  "generatedAt": "2026-11-04T13:32:24Z",
   "rotationMs": 6000,
   "order": [
     "tt",
@@ -13,25 +13,25 @@
         "net": "tt",
         "cap": "Ver las ultimas publicaciones en TikTok",
         "url": "https://www.tiktok.com/@unen.industrial.uni/video/7703025531133889812",
-        "tm": "hace 2 d"
+        "tm": "hace 3 d"
       },
       {
         "net": "tt",
         "cap": "Ver las ultimas publicaciones en TikTok",
         "url": "https://www.tiktok.com/@unen.industrial.uni/video/7698915584846744853",
-        "tm": "hace 2 d"
+        "tm": "hace 3 d"
       },
       {
         "net": "tt",
         "cap": "Ver las ultimas publicaciones en TikTok",
         "url": "https://www.tiktok.com/@unen.industrial.uni/video/7696735946338897173",
-        "tm": "27/10/2026"
+        "tm": "21/10/2026"
       },
       {
         "net": "tt",
         "cap": "Ver las ultimas publicaciones en TikTok",
         "url": "https://www.tiktok.com/@unen.industrial.uni/video/7696615583529307412",
-        "tm": "20/10/2026"
+        "tm": "21/10/2026"
       }
     ],
     "ig": [
@@ -39,14 +39,14 @@
         "net": "ig",
         "cap": "¡LLEGARON LOS AGÜIZOTES A LA UNI! 💀🔥 ¿Estás listo para el cierre de semestre más macabro del año? La tradición se toma la Avenida Universitaria y vos no te lo podés perder. 📅 30 de Octubre 📍 Avenida U",
         "url": "https://www.instagram.com/p/DfFCPavxuM1/",
-        "tm": "hace 5 d",
+        "tm": "hace 6 d",
         "img": "assets/posts/ig_DfFCPavxuM1.jpg"
       },
       {
         "net": "ig",
         "cap": "¡LLEGARON LOS AGÜIZOTES A LA UNI! 💀🔥 ¿Estás listo para el cierre de semestre más macabro del año? La tradición se toma la Avenida Universitaria y vos no te lo podés perder. 📅 30 de Octubre 📍 Avenida U",
         "url": "https://www.instagram.com/p/DfFBOaCxJEq/",
-        "tm": "hace 5 d",
+        "tm": "hace 6 d",
         "img": "assets/posts/ig_DfFBOaCxJEq.jpg"
       },
       {
