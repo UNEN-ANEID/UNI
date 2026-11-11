@@ -1,6 +1,6 @@
 (function (root) {
   root.UNEN_FEED = {
-  "generatedAt": "2026-11-10T14:00:15Z",
+  "generatedAt": "2026-11-11T13:17:29Z",
   "rotationMs": 6000,
   "order": [
     "tt",
@@ -13,25 +13,25 @@
         "net": "tt",
         "cap": "Ver las ultimas publicaciones en TikTok",
         "url": "https://www.tiktok.com/@unen.industrial.uni/video/7705508120310680853",
-        "tm": "hace 2 d"
+        "tm": "hace 3 d"
       },
       {
         "net": "tt",
         "cap": "Ver las ultimas publicaciones en TikTok",
         "url": "https://www.tiktok.com/@unen.industrial.uni/video/7703025531133889812",
-        "tm": "hace 2 d"
+        "tm": "hace 3 d"
       },
       {
         "net": "tt",
         "cap": "Ver las ultimas publicaciones en TikTok",
         "url": "https://www.tiktok.com/@unen.industrial.uni/video/7698915584846744853",
-        "tm": "03/11/2026"
+        "tm": "04/11/2026"
       },
       {
         "net": "tt",
         "cap": "Ver las ultimas publicaciones en TikTok",
         "url": "https://www.tiktok.com/@unen.industrial.uni/video/7696735946338897173",
-        "tm": "27/10/2026"
+        "tm": "21/10/2026"
       }
     ],
     "ig": [
