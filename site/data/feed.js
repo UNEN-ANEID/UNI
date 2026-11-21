@@ -1,6 +1,6 @@
 (function (root) {
   root.UNEN_FEED = {
-  "generatedAt": "2026-11-20T14:40:25Z",
+  "generatedAt": "2026-11-21T13:56:50Z",
   "rotationMs": 6000,
   "order": [
     "tt",
@@ -13,28 +13,35 @@
         "net": "tt",
         "cap": "Ver las ultimas publicaciones en TikTok",
         "url": "https://www.tiktok.com/@unen.industrial.uni/video/7705508120310680853",
-        "tm": "13/11/2026"
+        "tm": "14/11/2026"
       },
       {
         "net": "tt",
         "cap": "Ver las ultimas publicaciones en TikTok",
         "url": "https://www.tiktok.com/@unen.industrial.uni/video/7703025531133889812",
-        "tm": "13/11/2026"
+        "tm": "14/11/2026"
       },
       {
         "net": "tt",
         "cap": "Ver las ultimas publicaciones en TikTok",
         "url": "https://www.tiktok.com/@unen.industrial.uni/video/7698915584846744853",
-        "tm": "06/11/2026"
+        "tm": "07/11/2026"
       },
       {
         "net": "tt",
         "cap": "Ver las ultimas publicaciones en TikTok",
         "url": "https://www.tiktok.com/@unen.industrial.uni/video/7696735946338897173",
-        "tm": "23/10/2026"
+        "tm": "22/10/2026"
       }
     ],
     "ig": [
+      {
+        "net": "ig",
+        "cap": "Inauguración de Campo en la Universidad Nacional de Ingeniería UNI, en el recinto Pedro Arauz le Campa Palacios, gracias a nuestro buen gobierno de reconciliación, por aya permitirnos una educación gr",
+        "url": "https://www.instagram.com/p/Df_QCMuxhfH/",
+        "tm": "hace 10 h",
+        "img": "assets/posts/ig_Df_QCMuxhfH.jpg"
+      },
       {
         "net": "ig",
         "cap": "¡LLEGARON LOS AGÜIZOTES A LA UNI! 💀🔥 ¿Estás listo para el cierre de semestre más macabro del año? La tradición se toma la Avenida Universitaria y vos no te lo podés perder. 📅 30 de Octubre 📍 Avenida U",
@@ -55,13 +62,6 @@
         "url": "https://www.instagram.com/p/DevVmXrjatR/",
         "tm": "21/10/2026",
         "img": "assets/posts/ig_DevVmXrjatR.jpg"
-      },
-      {
-        "net": "ig",
-        "cap": "Feria Vocacional 2026",
-        "url": "https://www.instagram.com/p/DevVMzzN8OK/",
-        "tm": "21/10/2026",
-        "img": "assets/posts/ig_DevVMzzN8OK.jpg"
       }
     ],
     "fb": [
