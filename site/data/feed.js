@@ -1,6 +1,6 @@
 (function (root) {
   root.UNEN_FEED = {
-  "generatedAt": "2026-11-21T13:56:50Z",
+  "generatedAt": "2026-11-22T13:50:13Z",
   "rotationMs": 6000,
   "order": [
     "tt",
@@ -39,7 +39,7 @@
         "net": "ig",
         "cap": "Inauguración de Campo en la Universidad Nacional de Ingeniería UNI, en el recinto Pedro Arauz le Campa Palacios, gracias a nuestro buen gobierno de reconciliación, por aya permitirnos una educación gr",
         "url": "https://www.instagram.com/p/Df_QCMuxhfH/",
-        "tm": "hace 10 h",
+        "tm": "ayer",
         "img": "assets/posts/ig_Df_QCMuxhfH.jpg"
       },
       {
