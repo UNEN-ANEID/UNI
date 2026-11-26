@@ -1,6 +1,6 @@
 (function (root) {
   root.UNEN_FEED = {
-  "generatedAt": "2026-11-25T16:32:44Z",
+  "generatedAt": "2026-11-26T16:05:36Z",
   "rotationMs": 6000,
   "order": [
     "tt",
@@ -13,25 +13,25 @@
         "net": "tt",
         "cap": "Ver las ultimas publicaciones en TikTok",
         "url": "https://www.tiktok.com/@unen.industrial.uni/video/7705508120310680853",
-        "tm": "11/11/2026"
+        "tm": "12/11/2026"
       },
       {
         "net": "tt",
         "cap": "Ver las ultimas publicaciones en TikTok",
         "url": "https://www.tiktok.com/@unen.industrial.uni/video/7703025531133889812",
-        "tm": "11/11/2026"
+        "tm": "12/11/2026"
       },
       {
         "net": "tt",
         "cap": "Ver las ultimas publicaciones en TikTok",
         "url": "https://www.tiktok.com/@unen.industrial.uni/video/7698915584846744853",
-        "tm": "04/11/2026"
+        "tm": "05/11/2026"
       },
       {
         "net": "tt",
         "cap": "Ver las ultimas publicaciones en TikTok",
         "url": "https://www.tiktok.com/@unen.industrial.uni/video/7696735946338897173",
-        "tm": "26/10/2026"
+        "tm": "27/10/2026"
       }
     ],
     "ig": [
@@ -39,7 +39,7 @@
         "net": "ig",
         "cap": "Inauguración de Campo en la Universidad Nacional de Ingeniería UNI, en el recinto Pedro Arauz le Campa Palacios, gracias a nuestro buen gobierno de reconciliación, por aya permitirnos una educación gr",
         "url": "https://www.instagram.com/p/Df_QCMuxhfH/",
-        "tm": "hace 4 d",
+        "tm": "hace 5 d",
         "img": "assets/posts/ig_Df_QCMuxhfH.jpg"
       },
       {
